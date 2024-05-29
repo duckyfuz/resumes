@@ -1,7 +1,7 @@
 # Sample e-commerce platform backend
 
 ## User Registration & Authentication
-
+`/register`: add new row to User table
 ```
 @app.route('/register', methods=['POST'])
 def register():
@@ -12,8 +12,9 @@ def register():
     db.session.add(new_user)
     db.session.commit()
     return jsonify({'message': 'User registered successfully'}), 201
-
-
+```
+`/login`: checks username and password, returns a token (with an unimplemented `create_auth_token()` function)
+```
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
@@ -35,7 +36,7 @@ def login():
 #### They are not implemented, but will be used in the following routes.
 
 ## Shopping Cart Management (Add/Remove, View)
-
+`/cart [POST]`: create new ShoppingCart if it does not exist -> create new CartItem / add quantity
 ```
 @app.route('/cart', methods=['POST'])
 @token_required
@@ -58,8 +59,9 @@ def add_to_cart():
 
     db.session.commit()
     return jsonify({'message': 'Item added to cart'})
-
-
+```
+`/cart/<int:product_id>`: deletes CartItem
+```
 @app.route('/cart/<int:product_id>', methods=['DELETE'])
 @token_required
 def remove_from_cart(product_id):
@@ -75,8 +77,9 @@ def remove_from_cart(product_id):
     db.session.delete(cart_item)
     db.session.commit()
     return jsonify({'message': 'Item removed from cart'})
-
-
+```
+`/cart [GET]`: show all CartItems in ShoppingCart
+```
 @app.route('/cart', methods=['GET'])
 @token_required
 def view_cart():
@@ -89,8 +92,9 @@ def view_cart():
 
 ## Product Management (CRUD)
 
-We utilise `@role_required` for these routes. Sellers are allowed to CRUD products that belong to them, while shoppers can only R.
+We utilise `@role_required` for these routes. Sellers are allowed to CRUD products that belong to them (`@ownership_required`), while shoppers can only R.
 
+`/products`: create new product
 ```
 @app.route('/products', methods=['POST'])
 @token_required
@@ -102,8 +106,9 @@ def create_product():
     db.session.add(new_product)
     db.session.commit()
     return jsonify({'message': 'Product created'}), 201
-
-
+```
+`/products/<int:product_id> [PUT]`: update existing product
+```
 @app.route('/products/<int:product_id>', methods=['PUT'])
 @token_required
 @role_required('seller')
@@ -119,8 +124,9 @@ def update_product(product_id):
     product.price = data['price']
     db.session.commit()
     return jsonify({'message': 'Product updated'})
-
-
+```
+`/products/<int:product_id> [DELETE]`: delete existing product
+```
 @app.route('/products/<int:product_id>', methods=['DELETE'])
 @token_required
 @ownership_required
@@ -133,17 +139,23 @@ def delete_product(product_id):
     db.session.delete(product)
     db.session.commit()
     return jsonify({'message': 'Product deleted'})
-
-
+```
+`/products`: fetch existing products with query param
+```
 @app.route('/products', methods=['GET'])
 @token_required
 def get_products():
-    products = Product.query.all()
+    request.args.get('query')
+    if query:
+        products = Product.query.filter(Product.name.ilike(f'%{query}%')).all()
+    else:
+        products = Product.query.all()
     return jsonify([{'id': product.id, 'name': product.name, 'description': product.description, 'price': product.price} for product in products])
 ```
 
-# Order placement and tracking
 
+## Order Placement & Tracking
+`/orders`: create PaymentDetail, Order, & OrderItems based on the input ShoppingCart
 ```
 @app.route('/orders', methods=['POST'])
 @token_required
@@ -159,8 +171,12 @@ def place_order():
 
     total_amount = sum(
         item.quantity * Product.query.get(item.product_id).price for item in cart_items)
-    new_order = Order(
-        user_id=g.user.id, payment_id=data['payment_id'], total_amount=total_amount, status='Pending')
+
+    payment_detail = PaymentDetails(amount=total_amount, status='Pending')
+    db.session.add(payment_detail)
+    db.session.commit()
+
+    new_order = Order(user_id=g.user.id, payment_id=payment_detail.id, total_amount=total_amount, status='Pending Payment')
     db.session.add(new_order)
     db.session.commit()
 
@@ -171,8 +187,9 @@ def place_order():
 
     db.session.commit()
     return jsonify({'message': 'Order placed', 'order_id': new_order.id})
-
-
+```
+`/orders/<int:order_id>`: return details about an Order
+```
 @app.route('/orders/<int:order_id>', methods=['GET'])
 @token_required
 def track_order(order_id):
@@ -187,4 +204,37 @@ def track_order(order_id):
         'status': order.status,
         'items': [{'product_id': item.product_id, 'quantity': item.quantity, 'price': item.price} for item in order_items]
     })
+```
+
+
+## Payment Handling
+After creating an order, users will have to pay.
+
+`/payment`: update PaymentDetails and Order - `verify_payment_made()` is not implemented, but will return the payment state (eg. paid, failed)
+```
+@app.route('/payment', methods=['POST'])
+@token_required
+def handle_payment():
+    payment_id = data.get('payment_id')
+    
+    payment_detail = PaymentDetails.query.get(payment_id)
+    if not payment_detail:
+        return jsonify({'message': 'Payment details not found'}), 404
+    order = Order.query.filter_by(payment_id=payment_id).first()
+    if not order:
+        return jsonify({'message': 'Order not found for this payment'}), 404
+
+    payment_status = verify_payment_made(data.get("card_details"))
+
+    payment_detail.status = payment_status
+    db.session.commit()
+
+    if payment_status == 'Completed':
+        order.status = 'Paid'
+    else:
+        order.status = 'Payment Failed'
+    
+    db.session.commit()
+
+    return jsonify({'message': 'Payment status updated', 'order_id': order.id, 'order_status': order.status})
 ```
