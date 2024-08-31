@@ -1,10 +1,4 @@
-%-------------------------
-% Resume in Latex
-% Author : Jake Gutierrez
 % Based off of: https://github.com/sb2nov/resume
-% License : MIT
-%------------------------
-
 \documentclass[letterpaper,11pt]{article}
 
 \usepackage{latexsym}
@@ -22,15 +16,7 @@
 
 
 %----------FONT OPTIONS----------
-% sans-serif
 % \usepackage[sfdefault]{FiraSans}
-% \usepackage[sfdefault]{roboto}
-% \usepackage[sfdefault]{noto-sans}
-% \usepackage[default]{sourcesanspro}
-
-% serif
-% \usepackage{CormorantGaramond}
-% \usepackage{charter}
 
 
 \pagestyle{fancy}
@@ -51,6 +37,7 @@
 \raggedbottom
 \raggedright
 \setlength{\tabcolsep}{0in}
+\setlength{\footskip}{4.1pt}
 
 % Sections formatting
 \titleformat{\section}{
@@ -109,47 +96,52 @@
   \vspace{-#1}
 }
 
+
 %-------------------------------------------
 %%%%%%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%
 \begin{document}
 
-%----------HEADING(SPACEBTWN)----------
-% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-%   \textbf{\href{http://kenf.dev/}{\Large Kenneth Gao}} & Email : \href{mailto:kenneth.gwb@gmail.com}{kenneth.gwb@gmail.com}\\
-%   \href{http://kenf.dev/}{http://kenf.dev} & +65 8884 4154 \\
-% \end{tabular*}
 
-%----------HEADING(CENTER)----------
-\begin{center}
-    \textbf{\Huge \scshape Kenneth Gao} \\ \vspace{1pt}
-    \href{https://linkedin.com/in/thisiskenf/}{{linkedin.com/in/thisiskenf}} $|$ \href{https://github.com/duckyfuz/}{{github.com/duckyfuz}}
-    
-    \small +65 8884 4154 $|$ \href{mailto:hello@kenf.dev}{{hello@kenf.dev}} $|$ \href{https://www.kenf.dev/}{{www.kenf.dev}}
-    \reduceSpace{10pt}
-\end{center}
+%----------HEADING(SPACEBTWN)----------
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \textbf{\href{http://kenf.dev/}{\Large Kenneth Gao}} $|$ {\href{mailto:hello@kenf.dev}{hello@kenf.dev}} $|$ {\href{www.kenf.dev}{www.kenf.dev}} \\
+  \href{https://linkedin.com/in/thisiskenf/}{linkedin.com/in/thisiskenf} $|$ {\href{https://github.com/duckyfuz}{github.com/duckyfuz}} $|$ {+65 8884 4154}
+    \reduceSpace{6pt}
+\end{tabular*}
+
 
 %-----------EXPERIENCE-----------
 \section{Experience}
   \resumeSubHeadingListStart
     \resumeSubheading
-      {Software Engineering Intern}{Jan. 2024 -- Present}
+      {Software Engineering Intern}{Jun. 2024 -- Present}
+      {London Stock Exchange Group - Sustainable Finance Innovation Unit}{Singapore}
+      \resumeDescription{LSEG Labs addresses challenges in financial markets by assessing climate risks and simplifying ESG disclosure}
+      \resumeItemListStart
+        \resumeItem{Contributed to the development of a microservices architecture, enhancing scalability without extra overhead costs}
+        \resumeItem{Leveraged Infrastructure as Code (IaC) with Terraform to deploy a data-sharing module, achieving consistent, error-free deployments, reduced provisioning times, and ensuring idempotency across multiple environments}
+        \resumeItem{Implemented testing pipelines for cloud applications, ensuring error-free releases and minimizing deployment risks}
+      \resumeItemListEnd
+    \resumeSubheading
+      {Software Engineering Intern}{Jan. 2024 -- Jun. 2024}
       {NodeFlair - Tech Career Platform for Southeast Asia}{Singapore}
       \resumeDescription{NodeFlair is a startup that connects tech talents with job opportunities, streamlining the recruitment process}
       \resumeItemListStart
-        \resumeItem{Extended existing API on the Ruby on Rails backend to accomodate new services, elevating site capabilities}
+        \resumeItem{Extended existing API on the Ruby on Rails back-end to accommodate new services, elevating site capabilities}
         \resumeItem{Implemented automated testing in parallel, achieving a 50\% reduction in Continuous Integration (CI) testing time}
-        \resumeItem{Deployed programmic SEO strategies to automate the creation of SEO-optimised pages, increasing organic traffic}
-        \resumeItem{Utilized A/B tests on key landing pages, leading to data-driven changes that boosted click-through rates by 18\%}
-        \resumeItem{Maintained and upgraded functionalities of a Plasmo browser extention, facilitating smoother access to AI tools}
+        \resumeItem{Set up Docker images for development to mimic production environment, reducing on-boarding time by 80\%}
+        \resumeItem{Deployed programmatic SEO strategies to automate the creation of SEO-optimised pages, increasing organic traffic}
+        % \resumeItem{Utilized A/B tests on key landing pages, leading to data-driven changes that boosted click-through rates by 18\%}
+        \resumeItem{Maintained and upgraded functionalities of a Plasmo browser extension, facilitating smoother access to AI tools}
         \resumeItem{Assisted in upgrading dependencies, ensuring compatibility and improving overall site performance}
         % \resumeItem{Collaborated with product managers and designers to translate requirements into technical specifications, ensuring timely and successful project deliveries}
       \resumeItemListEnd
-    \resumeSubheading
-      {Programming Lead}{Nov. 2023 -- Present}
-      {CloudHacks 2024}{Singapore}
-      \resumeItemListStart
-        \resumeItem{Led a team of 3 using Agile methodology to redesign and rebuild promotional website with the Nextjs framework}
-      \resumeItemListEnd
+    % \resumeSubheading
+    %   {Programming Lead}{Nov. 2023 -- Present}
+    %   {CloudHacks 2024}{Singapore}
+    %   \resumeItemListStart
+    %     \resumeItem{Led a team of 3 using Agile methodology to redesign and rebuild promotional website with the Nextjs framework}
+    %   \resumeItemListEnd
     \resumeSubheading
       {Software Engineering / Machine Learning Intern}{Nov. 2023 -- Jan. 2024}
       {xData, Home Team Science and Technology Agency (HTX)}{Singapore}
@@ -159,17 +151,11 @@
         \resumeItem{Leveraged knowledge graphs and vector databases to enhance multi-hop question answering (QA) performance during retrieval augmented generation (RAG), leading to greater context precision}
         \resumeItem{Explored multi-agent LLMs to augment QA capabilities, leading to enhanced complex analysis performance}
         \resumeItem{Worked on Vertext, an in-house NLP tool serving 10+ government agencies - redesigned frontend with React to improve user experience and refactored codebase to reuse components for cleaner implementation}
-        % TODO: show impact, empahsis on development times & ease of maintainance
+        % TODO: show impact, emphasis on development times & ease of maintainance
         \resumeItem{Utilized Python with BeautifulSoup for web scraping and performed data cleaning using pandas and NumPy}
       \resumeItemListEnd
-    \resumeSubheading
-      {SSP Platoon Commander}{Dec. 2022 -- Nov. 2023}
-      {16C4I Bn, Singapore Armed Forces}{Singapore}
-      \resumeItemListStart
-        \resumeItem{Led a 20+ member platoon to maintain constant battalion operational readiness}
-        \resumeItem{Automated administrative chores such as duty scheduling via scripting, leading to time savings of over 60\%}
-      \resumeItemListEnd
   \resumeSubHeadingListEnd
+
 
 %-----------EDUCATION-----------
 \section{Education}
@@ -179,12 +165,19 @@
       {Bachelor of Engineering in Computer Engineering, E-Scholars Programme (3yrs BEng + 1yr MSc)}{}
     \resumeSubheading
       {Hwa Chong Institution}{Singapore}
-      {GCE A-Levels, 90RP (PCME) with H3 Physics Distinction}{}
+      {GCE A-Levels, 90/90RP (PCME) with H3 Physics Distinction}{}
   \resumeSubHeadingListEnd
 
+
 %-----------PROJECTS-----------
-\section{Projects}
+\section{Projects / Extracurriculars}
   \resumeSubHeadingListStart
+    \resumeProjectHeading
+      {\textbf{Programming Lead}  $|$ CloudHacks 2024}{Nov. 2023 - Present}
+      \resumeItemListStart
+        \resumeItem{Led a team of 3 using Agile methodology to redesign and rebuild promotional website with the Nextjs framework}
+      \resumeItemListEnd
+    \reduceSpace{4pt}
     \resumeProjectHeading
       {\textbf{Basic Home Server}  $|$ Repurposed laptop running Ubuntu Server for personal use}{Feb. 2024 - Present}
       \resumeItemListStart
@@ -192,33 +185,25 @@
         \resumeItem{Utilised as a cloud compute platform to self-host backend services and Github runners for other personal projects}
         \resumeItem{Primarily functioning as a NAS (Network Attached Storage) hub for a self-hosted cloud storage solution}
       \resumeItemListEnd
+    \reduceSpace{4pt}
     \resumeProjectHeading
       {\textbf{\href{https://github.com/duckyfuz/accountingReID-hacX2023}{\underline{AIded}}} $|$ Utilised VGG16 and YOLOv8 to detect anomalies in secure workplaces, accelerating the accounting process}{}
     \resumeProjectHeading
-      {\textbf{\href{https://github.com/duckyfuz/heritageHunt-SplashAwards2023}{\underline{HeritageHunt}}} $|$ Full-stack native application featuring a personalised and gamified way to learn about Singapore’s culture}{}
-    % \resumeProjectHeading
-    %   {\textbf{\href{https://github.com/duckyfuz/emoSense-sutdwth2023}{\underline{EmoSense}}} $|$ Tool that leverages speech recognition algorithms and LLMs to conduct real time sentimennt analysis}{}
+      {\textbf{\href{https://github.com/duckyfuz/heritageHunt-SplashAwards2023}{\underline{HeritageHunt}}} $|$ Full-stack native application featuring a personalised and gamified way to learn about Singapore}{}
     \resumeProjectHeading
       {\textbf{\href{https://github.com/duckyfuz/soundBytes-cloudHacks2023}{\underline{SoundBytes}}} $|$ Full-stack web application for personalised news podcasts, built with OpenAI and Amazon Polly}{}
-    % \resumeProjectHeading
-    %   {\textbf{\href{https://kenf.hashnode.dev/treehouse}{\underline{treehouse}}} $|$ Full-stack web application for sharing community-wide activites, built with React and AWS}{}
-    % \resumeProjectHeading
-    %   {\textbf{\href{https://github.com/duckyfuz/expense_tracker}{\underline{Budgety}}} $|$ Full-stack native application for tracking expenses and viewing insights, built with React Native and Firebase}{}
   \resumeSubHeadingListEnd
+
 
 %-----------AWARDS-----------
 \section{Awards}
   \resumeSubHeadingListStart
-    % \resumeProjectHeading
-    %     {\textbf{HTX's HacX!} $|$ \emph{2nd Runner-up}}{Nov. 2023}
-    %     \resumeItemListStart
-    %       \resumeItem{Developed an application that utilises VGG16 and YOLOv8 to accelerate the tool accounting process for contractors entering secure facilities}
-    %     \resumeItemListEnd
     \resumeProjectHeading
-    {\textbf{Micron's BACC 2024} - \emph{2nd Runner-up} $|$ \textbf{Ground Zero 2024} - \emph{Finalist} $|$ \textbf{SCS's Splash Awards 2023} - \emph{1st Place}}{}
+    {\textbf{Micron BACC 2024} - \emph{2nd Runner-up} $|$ \textbf{Ground Zero 2024} - \emph{Finalist} $|$ \textbf{SCS Splash Awards 2023} - \emph{1st Place}}{}
     \resumeProjectHeading
-        {\textbf{SUTD's What the Hack 2023} - \emph{1st Place} $|$ \textbf{HTX's HacX! 2023} - \emph{2nd Runner-up} $|$ \textbf{CloudHacks 2023} - \emph{1st Place}}{}
+        {\textbf{SUTD What the Hack 2023} - \emph{1st Place} $|$ \textbf{HTX HacX! 2023} - \emph{2nd Runner-up} $|$ \textbf{CloudHacks 2023} - \emph{1st Place}}{}
   \resumeSubHeadingListEnd
+
 
 %-----------TECHNICAL SKILLS-----------
 \section{Technical Skills}
@@ -230,6 +215,7 @@
      \textbf{Libraries}{: pandas, NumPy, Matplotlib, TensorFlow, PyTorch, LangChain, ThreeJS}
     }}
  \end{itemize}
+
 
 %-------------------------------------------
 \end{document}
