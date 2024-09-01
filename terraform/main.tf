@@ -17,6 +17,8 @@ terraform {
 
 locals {
   resume_source = "../kennethgao_resume.pdf"
+  formatted_time = formatdate("YYYYMMDDHHMMSS", timestamp())
+  resume_key     = format("kennethgao_resume_CAA%s.pdf", local.formatted_time)
   s3_origin_id = "myS3Origin"
 }
 
@@ -35,7 +37,7 @@ resource "aws_s3_bucket_public_access_block" "allow_public_acl" {
 
 resource "aws_s3_object" "pdf_upload" {
   bucket       = aws_s3_bucket.resume_bucket.bucket
-  key          = "kennethgao_resume.pdf"
+  key          = local.resume_key
   source       = local.resume_source
   content_type = "application/pdf"
 }
@@ -44,7 +46,7 @@ resource "aws_s3_bucket_website_configuration" "example" {
   bucket = aws_s3_bucket.resume_bucket.id
 
   index_document {
-    suffix = "kennethgao_resume.pdf"
+    suffix = local.resume_key
   }
 }
 
@@ -59,7 +61,7 @@ resource "aws_s3_bucket_policy" "resume_bucket_policy" {
         Effect    = "Allow"
         Principal = "*"
         Action    = "s3:GetObject"
-        Resource  = "${aws_s3_bucket.resume_bucket.arn}/kennethgao_resume.pdf"
+        Resource  = "${aws_s3_bucket.resume_bucket.arn}/${local.resume_key}"
       }
     ]
   })
@@ -75,7 +77,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 
   enabled             = true
   is_ipv6_enabled     = true
-  default_root_object = "kennethgao_resume.pdf"
+  default_root_object = local.resume_key
 
   aliases = ["resume.kenf.dev"]
 
@@ -100,7 +102,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 
   # Cache behavior for PDF files
   ordered_cache_behavior {
-    path_pattern     = "/kennethgao_resume.pdf"
+    path_pattern     = "/${local.resume_key}"
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = local.s3_origin_id
