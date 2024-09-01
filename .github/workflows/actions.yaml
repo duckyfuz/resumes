@@ -30,12 +30,16 @@ jobs:
 
       - name: Initialize Terraform
         run: terraform init
+        working-directory: ./terraform
 
       - name: Plan Terraform changes
         run: terraform plan -out=tfplan
+        working-directory: ./terraform
 
       - name: Apply Terraform changes
         run: terraform apply --auto-approve
+        working-directory: ./terraform
 
       - name: Clean up
         run: rm tfplan
+        working-directory: ./terraform
