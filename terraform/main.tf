@@ -16,6 +16,7 @@ terraform {
 }
 
 locals {
+  resume_source = "../kennethgao_resume.pdf"
   s3_origin_id = "myS3Origin"
 }
 
@@ -35,7 +36,7 @@ resource "aws_s3_bucket_public_access_block" "allow_public_acl" {
 resource "aws_s3_object" "pdf_upload" {
   bucket       = aws_s3_bucket.resume_bucket.bucket
   key          = "kennethgao_resume.pdf"
-  source       = "../kennethgao_resume.pdf"
+  source       = local.resume_source
   content_type = "application/pdf"
 }
 
