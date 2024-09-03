@@ -13,6 +13,13 @@ terraform {
     key    = "terraform/key"
     region = "ap-southeast-1"
   }
+
+  required_providers {
+    cloudflare = {
+      source = "cloudflare/cloudflare"
+      version = "~> 4"
+    }
+  }
 }
 
 locals {
