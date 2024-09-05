@@ -8,6 +8,7 @@ locals {
 
 resource "cloudflare_record" "cloudfront_to_resume_cname" {
   zone_id = local.cloudflare_zone_id
+  comment = "CREATED BY TERRAFORM - for cloudfront record"
   name    = "resume"
   type    = "CNAME"
   content   = "d1qf0qghsqyx1z.cloudfront.net"  # TODO: replace with var from aws.tf
