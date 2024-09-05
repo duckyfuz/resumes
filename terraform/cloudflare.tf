@@ -1,6 +1,6 @@
-# provider "cloudflare" {
-#   api_token = var.cloudflare_api_token
-# }
+provider "cloudflare" {
+  api_token = var.cloudflare_api_token
+}
 
 locals {
   cloudflare_zone_id = "47e2c26d25d25ff12cb21a0b2a5e1a4d"
