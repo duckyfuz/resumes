@@ -9,7 +9,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "resume-storage-bucket"
+    bucket = "ken-tf-state-bucket"
     key    = "terraform/key"
     region = "ap-southeast-1"
   }
