@@ -7,7 +7,7 @@ resource "cloudflare_record" "cloudfront_to_resume_cname" {
   comment = "CREATED BY TERRAFORM - for cloudfront record"
   name    = "resume"
   type    = "CNAME"
-  content   = "d1qf0qghsqyx1z.cloudfront.net"  # TODO: replace with var from aws.tf
+  content   = aws_cloudfront_distribution.s3_distribution.domain_name
   ttl     = 3600
   proxied = false
 }
