@@ -78,5 +78,5 @@ resource "aws_acm_certificate" "resume_cert" {
 
 resource "aws_acm_certificate_validation" "cert" {
   provider        = aws.us-east-1
-  certificate_arn = "arn:aws:acm:us-east-1:533267177082:certificate/af022575-6c3d-4075-96f1-52911405fdd4"
+  certificate_arn = aws_acm_certificate.resume_cert.arn
 }
