@@ -1,5 +1,6 @@
 resource "aws_s3_bucket" "resume_bucket" {
   bucket = "resume-storage-bucket"
+  force_destroy = true
 }
 
 resource "aws_s3_bucket_public_access_block" "allow_public_acl" {
