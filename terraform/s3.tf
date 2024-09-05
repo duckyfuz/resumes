@@ -18,7 +18,7 @@ resource "aws_s3_object" "pdf_upload" {
   content_type = "application/pdf"
 }
 
-resource "aws_s3_bucket_website_configuration" "example" {
+resource "aws_s3_bucket_website_configuration" "s3_site_config" {
   bucket = aws_s3_bucket.resume_bucket.id
 
   index_document {
