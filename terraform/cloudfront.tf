@@ -1,7 +1,7 @@
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
-    domain_name              = aws_s3_bucket.resume_bucket.bucket_regional_domain_name
-    origin_id                = local.s3_origin_id
+    domain_name = aws_s3_bucket.resume_bucket.bucket_regional_domain_name
+    origin_id   = local.s3_origin_id
   }
 
   enabled             = true
@@ -62,11 +62,11 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 
   viewer_certificate {
     acm_certificate_arn = aws_acm_certificate_validation.cert.certificate_arn
-    ssl_support_method = "sni-only"
+    ssl_support_method  = "sni-only"
   }
 }
 
 resource "aws_acm_certificate_validation" "cert" {
-  provider = aws.us-east-1
-  certificate_arn         = "arn:aws:acm:us-east-1:533267177082:certificate/af022575-6c3d-4075-96f1-52911405fdd4"
+  provider        = aws.us-east-1
+  certificate_arn = "arn:aws:acm:us-east-1:533267177082:certificate/af022575-6c3d-4075-96f1-52911405fdd4"
 }

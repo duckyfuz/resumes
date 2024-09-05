@@ -42,5 +42,5 @@ resource "aws_s3_bucket_policy" "resume_bucket_policy" {
     ]
   })
 
-  depends_on = [ aws_s3_bucket_public_access_block.allow_public_acl ]
+  depends_on = [aws_s3_bucket_public_access_block.allow_public_acl]
 }
