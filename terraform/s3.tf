@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "resume_bucket" {
-  bucket = "resume-storage-bucket"
+  bucket        = "resume-storage-bucket"
   force_destroy = true
 }
 

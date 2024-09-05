@@ -67,7 +67,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 }
 
 resource "aws_acm_certificate" "resume_cert" {
-  provider        = aws.us-east-1
+  provider          = aws.us-east-1
   domain_name       = "resume.kenf.dev"
   validation_method = "DNS"
 
