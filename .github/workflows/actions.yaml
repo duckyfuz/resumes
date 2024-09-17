@@ -37,7 +37,7 @@ jobs:
         working-directory: ./terraform
 
       - name: Apply Terraform changes
-        run: terraform apply --auto-approve
+        run: terraform apply tfplan --auto-approve
         working-directory: ./terraform
 
       - name: Clean up
