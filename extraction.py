@@ -137,7 +137,6 @@ def handle_technical_skills(data: list):
     skills = {}
     for line in data:
         if line.startswith("\\textbf"):
-            print(line)
             category, items = (
                 line.replace("\\textbf{", "").rstrip("\\\\").rstrip("} ").split("}{")
             )
