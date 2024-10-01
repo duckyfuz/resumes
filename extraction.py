@@ -1,4 +1,4 @@
-file_path = "/Users/ken/Developer/resumes/kennethgao_resume.tex"
+file_path = "kennethgao_resume.tex"
 
 ordered_sections = [
     "Experience",
