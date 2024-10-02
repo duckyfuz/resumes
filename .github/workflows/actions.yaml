@@ -25,7 +25,11 @@ jobs:
 
       - name: Export resume into JSON
         run: |
-          python extraction.py
+          python extraction.py --output kennethgao_resume.json
+
+      - name: Verify JSON presence
+        run: |
+          test -f kennethgao_resume.json && cat kennethgao_resume.json
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v1
