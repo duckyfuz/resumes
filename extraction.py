@@ -1,3 +1,6 @@
+import json
+import argparse
+
 file_path = "kennethgao_resume.tex"
 
 ordered_sections = [
@@ -163,11 +166,16 @@ def handle_technical_skills(data: list):
     processed_resume_data["Technical Skills"].append(skills)
 
 
-handle_experience(resume_data["Experience"])
-handle_education(resume_data["Education"])
-handle_projects(resume_data["Projects / Extracurriculars"])
-handle_awards(resume_data["Awards"])
-handle_technical_skills(resume_data["Technical Skills"])
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Process resume data.")
+    parser.add_argument("--output", type=str, required=True, help="Output JSON file")
+    args = parser.parse_args()
 
+    handle_experience(resume_data["Experience"])
+    handle_education(resume_data["Education"])
+    handle_projects(resume_data["Projects / Extracurriculars"])
+    handle_awards(resume_data["Awards"])
+    handle_technical_skills(resume_data["Technical Skills"])
 
-print(processed_resume_data)
+    with open(args.output, "w") as json_file:
+        json.dump(processed_resume_data, json_file, indent=2)
