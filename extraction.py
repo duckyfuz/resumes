@@ -128,7 +128,12 @@ def handle_awards(data: list):
                 processed_resume_data["Awards"].append(item)
             item = {}
             item["awards"] = (
-                line.replace("\\resumeProjectHeading{", "").rstrip("}").split(" $|$ ")
+                line.replace("\\resumeProjectHeading{", "")
+                .replace("\\textbf{", "")
+                .replace("\\emph{", "")
+                .replace("}", "")
+                .replace("{", "")
+                .split(" $|$ ")
             )
         i += 1
 
