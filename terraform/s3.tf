@@ -60,6 +60,7 @@ resource "aws_s3_bucket_policy" "resume_bucket_policy" {
         Action    = "s3:GetObject"
         Resource  = [
           "${aws_s3_bucket.resume_bucket.arn}/${local.resume_key}",
+          "${aws_s3_bucket.resume_bucket.arn}/json",
           "${aws_s3_bucket.resume_bucket.arn}/${local.resume_json_key}"
         ]
       }
