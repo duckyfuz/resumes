@@ -28,9 +28,12 @@ terraform {
 
 locals {
   resume_source  = "../kennethgao_resume.pdf"
+  resume_json_source  = "../kennethgao_resume.json"
   formatted_time = formatdate("DDMMYY-hhmmZZZ", timestamp())
   resume_hash    = filesha256(local.resume_source)
+  resume_json_hash    = filesha256(local.resume_source)
   resume_key     = format("resume_%s.pdf", local.resume_hash)
+  resume_json_key     = format("resume_json_%s.pdf", local.resume_json_hash)
   s3_origin_id   = "myS3Origin"
 
   cloudflare_zone_id = "47e2c26d25d25ff12cb21a0b2a5e1a4d"

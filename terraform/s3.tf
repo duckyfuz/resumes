@@ -19,6 +19,13 @@ resource "aws_s3_object" "pdf_upload" {
   content_type = "application/pdf"
 }
 
+resource "aws_s3_object" "json_upload" {
+  bucket       = aws_s3_bucket.resume_bucket.bucket
+  key          = local.resume_json_key
+  source       = local.resume_json_source
+  content_type = "application/json"
+}
+
 resource "aws_s3_bucket_website_configuration" "s3_site_config" {
   bucket = aws_s3_bucket.resume_bucket.id
 
