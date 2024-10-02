@@ -32,6 +32,17 @@ resource "aws_s3_bucket_website_configuration" "s3_site_config" {
   index_document {
     suffix = local.resume_key
   }
+
+  routing_rules = jsonencode([
+    {
+      Condition = {
+        KeyPrefixEquals = "json"
+      },
+      Redirect = {
+        ReplaceKeyWith = local.resume_json_key
+      }
+    }
+  ])
 }
 
 resource "aws_s3_bucket_policy" "resume_bucket_policy" {
@@ -47,7 +58,10 @@ resource "aws_s3_bucket_policy" "resume_bucket_policy" {
           AWS = "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${aws_cloudfront_origin_access_identity.oai.id}"
         }
         Action    = "s3:GetObject"
-        Resource  = "${aws_s3_bucket.resume_bucket.arn}/${local.resume_key}"
+        Resource  = [
+          "${aws_s3_bucket.resume_bucket.arn}/${local.resume_key}",
+          "${aws_s3_bucket.resume_bucket.arn}/${local.resume_json_key}"
+        ]
       }
     ]
   })
