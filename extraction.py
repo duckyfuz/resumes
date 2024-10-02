@@ -80,9 +80,7 @@ def handle_education(data: list):
         i += 1
 
 
-def handle_projects(
-    data: list,
-):  # FIXME: not working for differently formatted projects
+def handle_projects(data: list):
     item = {}
     to_skip = ["\\section", "\\resumeSubHeadingListStart"]
     i = 0
@@ -100,7 +98,23 @@ def handle_projects(
                 processed_resume_data["Projects / Extracurriculars"].append(item)
             item = {}
             i += 1
-            item["title"], item["duration"] = data[i].strip("{}").split("}{")
+            item["title"], item["duration"] = (
+                data[i].replace("\\textbf{", "").rsplit("}{", 1)
+            )
+            if "\\href" in item["title"]:
+                tmp = item["title"].split("}{")
+                item["title"] = tmp[1]
+                item["link"] = (
+                    tmp[0].replace("\\href{", "").replace("}", "").replace("{", "")
+                )
+            item["title"] = (
+                item["title"]
+                .replace("\\underline{", "")
+                .replace("}", "")
+                .replace("{", "")
+                .replace("$", "")
+            )
+            item["duration"] = item["duration"].replace("}", "")
         elif line.startswith("\\resumeItemListStart"):
             item["items"] = []
             i += 1
