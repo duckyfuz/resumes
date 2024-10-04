@@ -14,7 +14,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket = "ken-tf-state-bucket"
-    key    = "terraform/key"
+    key    = "terraform/key" #TODO: change this key according to project name
     region = "ap-southeast-1"
   }
 
