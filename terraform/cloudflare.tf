@@ -1,6 +1,3 @@
-# provider "cloudflare" {
-#   api_token = var.cloudflare_api_token
-# }
 resource "cloudflare_record" "acm_certificate_cname" {
   zone_id = local.cloudflare_zone_id
   comment = "${local.comment_prefix} - for AWS ACM certificate"
