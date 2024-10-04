@@ -14,7 +14,7 @@ resource "cloudflare_record" "acm_certificate_cname" {
 resource "cloudflare_record" "cloudfront_to_resume_cname" {
   zone_id = local.cloudflare_zone_id
   comment = "${local.comment_prefix} - for cloudfront record"
-  name    = "resume"
+  name    = local.subdomain_name
   type    = "CNAME"
   content = aws_cloudfront_distribution.s3_distribution.domain_name
   ttl     = 3600
