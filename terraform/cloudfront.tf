@@ -19,22 +19,11 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   aliases = ["resume.kenf.dev"]
 
   default_cache_behavior {
-    allowed_methods  = ["GET", "HEAD"]
-    cached_methods   = ["GET", "HEAD"]
-    target_origin_id = local.s3_origin_id
-
-    forwarded_values {
-      query_string = false
-
-      cookies {
-        forward = "none"
-      }
-    }
-
+    allowed_methods          = ["GET", "HEAD"]
+    cached_methods           = []
+    target_origin_id         = local.s3_origin_id
+    cache_policy_id          = data.aws_cloudfront_cache_policy.caching_disabled.id
     viewer_protocol_policy = "redirect-to-https"
-    min_ttl                = 0
-    default_ttl            = 0
-    max_ttl                = 0
   }
 
   price_class = "PriceClass_200"
@@ -50,6 +39,10 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     acm_certificate_arn = aws_acm_certificate_validation.cert.certificate_arn
     ssl_support_method  = "sni-only"
   }
+}
+
+data "aws_cloudfront_cache_policy" "caching_disabled" {
+  name = "Managed-CachingDisabled"
 }
 
 resource "aws_acm_certificate" "resume_cert" {
