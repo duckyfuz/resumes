@@ -7,14 +7,13 @@ provider "aws" {
   alias  = "us-east-1"
 }
 
-# provider "cloudflare" {
-#   api_token = var.cloudflare_api_token
-# }
+provider "cloudflare" {
+}
 
 terraform {
   backend "s3" {
     bucket = "ken-tf-state-bucket"
-    key    = "terraform/key" #TODO: change this key according to project name
+    key    = "resume-hosting-tf-key"
     region = "ap-southeast-1"
   }
 
