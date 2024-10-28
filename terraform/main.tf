@@ -29,8 +29,7 @@ terraform {
 locals {
   resume_source      = "../kennethgao_resume.pdf"
   resume_json_source = "../kennethgao_resume.json"
-  version_hash       = filesha256("../kennethgao_resume.tex")
-  resume_key         = format("resume_%s.pdf", local.version_hash)
+  resume_key         = "resume.pdf"
   resume_json_key    = "export.json"
   s3_origin_id       = "ResumeS3Origin"
 
