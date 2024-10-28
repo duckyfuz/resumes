@@ -14,6 +14,6 @@ resource "cloudflare_record" "cloudfront_to_resume_cname" {
   name    = local.subdomain_name
   type    = "CNAME"
   content = aws_cloudfront_distribution.s3_distribution.domain_name
-  ttl     = 3600
-  proxied = false
+  ttl     = 1
+  proxied = true
 }
