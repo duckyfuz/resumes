@@ -24,6 +24,7 @@ resource "aws_s3_object" "json_upload" {
   key          = local.resume_json_key
   source       = local.resume_json_source
   content_type = "application/json"
+  etag         = filemd5(local.resume_json_source)
 }
 
 resource "aws_s3_bucket_website_configuration" "s3_site_config" {
