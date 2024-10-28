@@ -17,7 +17,7 @@ resource "aws_s3_object" "pdf_upload" {
   key          = local.resume_key
   source       = local.resume_source
   content_type = "application/pdf"
-  etag = local.resume_source
+  etag         = filemd5(local.resume_source)
 }
 
 resource "aws_s3_object" "json_upload" {
