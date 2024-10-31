@@ -14,6 +14,7 @@ resource "cloudflare_record" "cloudfront_to_resume_cname" {
   name    = local.subdomain_name
   type    = "CNAME"
   content = aws_cloudfront_distribution.s3_distribution.domain_name
-  ttl     = 1
-  proxied = true
+  # note that we do not use proxy as upptime will detect it as down
+  ttl     = 3600
+  proxied = false
 }
