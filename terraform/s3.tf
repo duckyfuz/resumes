@@ -36,6 +36,18 @@ resource "aws_s3_bucket_website_configuration" "s3_site_config" {
   }
 }
 
+resource "aws_s3_bucket_cors_configuration" "resume_bucket_cors" {
+  bucket = aws_s3_bucket.resume_bucket.id
+
+  cors_rule {
+    allowed_headers = ["*"]
+    allowed_methods = ["GET"]
+    allowed_origins = ["*"]
+    expose_headers  = ["ETag"]
+    max_age_seconds = 3000
+  }
+}
+
 resource "aws_s3_bucket_policy" "resume_bucket_policy" {
   bucket = aws_s3_bucket.resume_bucket.bucket
 
