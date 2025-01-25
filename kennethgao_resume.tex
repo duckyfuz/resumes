@@ -21,36 +21,36 @@
       {London Stock Exchange Group - Sustainable Finance Innovation Unit}{Singapore}
       \resumeDescription{LSEG Labs addresses challenges in financial markets by assessing climate risks and simplifying ESG disclosure}
       \resumeItemListStart
-        % \resumeItem{Engineered a microservices architecture to enhance scalability and reduce overhead costs from test environments}
-        \resumeItem{Utilized Infrastructure as Code (IaC) with Terraform to deploy microservices for data-sharing, reducing provisioning times, enhancing scalability, and maintaining idempotency across multiple environments}       \resumeItem{Set up key overloading in DynamoDB to enhance query efficiency and reduce reliance on GSI for complex queries}
-        \resumeItem{Implemented testing pipelines for cloud applications, ensuring error-free releases and minimizing deployment risks}
-        \resumeItem{Designed a CRUD module for managing granular data access permissions within a NoSQL database environment}
+        \resumeItem{Utilized Infrastructure as Code (IaC) with Terraform to provision micro-services for a data ingestion pipeline, reducing provisioning times by 90\% and maintaining idempotency across multiple development and test environments}
+        \resumeItem{Designed and deployed infrastructure using AWS SNS for efficient Pub/Sub data-sharing between micro-services}
+        \resumeItem{Led development of replay feature with Athena for event-driven architecture, accelerating disaster recovery by 80\%}
+        \resumeItem{Implemented CRUD module for managing granular data access permissions within a NoSQL database environment}
+        \resumeItem{Set up key overloading in DynamoDB to decrease reliance on GSI for complex queries, cutting down costs by 60\%}
+        \resumeItem{Created test pipelines for cloud services, decreasing failed deployments by 10\% and minimizing deployment errors}
+        \resumeItem{Explored WASM SQLite with NoSQL backend, enabling complex analytics and cutting down backend calls by 40\%}
       \resumeItemListEnd
     \resumeSubheading
       {Software Engineering Intern}{Jan. 2024 -- Jun. 2024}
       {NodeFlair - Tech Career Platform for Southeast Asia}{Singapore}
       \resumeDescription{NodeFlair is a startup that connects tech talents with job opportunities, streamlining the recruitment process}
       \resumeItemListStart
-        \resumeItem{Extended existing API on the Ruby on Rails back-end to accommodate new services, elevating site capabilities}
-        \resumeItem{Implemented automated testing in parallel, achieving a 50\% reduction in Continuous Integration (CI) testing time}
-        \resumeItem{Set up Docker images for development to mimic production environment, reducing on-boarding time by 80\%}
-        \resumeItem{Deployed programmatic SEO strategies to automate the creation of SEO-optimised pages, increasing organic traffic}
-        % \resumeItem{Utilized A/B tests on key landing pages, leading to data-driven changes that boosted click-through rates by 18\%}
+        \resumeItem{Enhanced and optimized the existing Ruby on Rails API to support large-scale, high-availability services and boost site performance and scalability for over 400,000 monthly users}
         \resumeItem{Maintained and upgraded functionalities of a Plasmo browser extension, facilitating smoother access to AI tools}
-        \resumeItem{Assisted in upgrading dependencies, ensuring compatibility and improving overall site performance}
-        % \resumeItem{Collaborated with product managers and designers to translate requirements into technical specifications, ensuring timely and successful project deliveries}
-      \resumeItemListEnd
+        \resumeItem{Leveraged parallel integration and e2e testing to achieve a 50\% reduction in Continuous Integration (CI) test time}
+        \resumeItem{Set up Docker images for development to mimic production environment, reducing on-boarding time by over 80\%}
+        \resumeItem{Utilized A/B tests on key landing pages for data-driven changes, boosting click-through rates by 18\%}
+        \resumeItem{Deployed programmatic SEO to automate creation of SEO-optimised pages, increasing organic traffic by 60\%}
+     \resumeItemListEnd
     \resumeSubheading
       {Software Engineering / Machine Learning Intern}{Nov. 2023 -- Jan. 2024}
       {Home Team Science and Technology Agency (HTX) - xData}{Singapore}
       \resumeDescription{xData builds data and AI products that enhances the Home Team's capabilities in internal and mission-based operations}
       \resumeItemListStart
-        \resumeItem{Utilised GenAI to automate the construction of knowledge graphs from unstructured text}
-        \resumeItem{Leveraged knowledge graphs and vector databases to enhance multi-hop question answering (QA) performance during retrieval augmented generation (RAG), leading to greater context precision}
-        \resumeItem{Explored multi-agent LLMs to augment QA capabilities, leading to enhanced complex analysis performance}
-        \resumeItem{Worked on Vertext, an in-house NLP tool serving 10+ government agencies - redesigned frontend with React to improve user experience and refactored codebase to reuse components for cleaner implementation}
-        % TODO: show impact, emphasis on development times & ease of maintainance
-        \resumeItem{Utilized Python with BeautifulSoup for web scraping and performed data cleaning using pandas and NumPy}
+        \resumeItem{Employed BeautifulSoup for web scraping, with data cleaning and transformation using Pandas and NumPy}
+        \resumeItem{Utilised GenAI for the construction of knowledge graphs from over 40,000 pages of unstructured legal documents}
+        \resumeItem{Implemented multi-agent LLMs for question answering (QA), for a 15\% increase in accuracy in data-analysis tasks}
+        \resumeItem{Integrated knowledge graphs and vector databases to enhance multi-hop QA performance during retrieval-augmented generation (RAG), resulting in a 30\% increase in evaluation scores and improved context precision}
+        \resumeItem{Initiated frontend redesign of Vertext, an in-house NLP tool serving 10+ agencies, upping feedback scores by 40\%}
       \resumeItemListEnd
   \resumeSubHeadingListEnd
 
@@ -61,9 +61,9 @@
     \resumeSubheading
       {National University of Singapore}{Singapore}
       {B.Eng Computer Engineering (E-Scholars Programme) - 4.9GPA}{Aug. 2024 -- May 2027}
-    \resumeSubheading
-      {Hwa Chong Institution}{Singapore}
-      {GCE A-Levels, 90/90RP (PCME) with H3 Physics Distinction}{2015 -- 2021}
+    % \resumeSubheading
+    %   {Hwa Chong Institution}{Singapore}
+    %   {GCE A-Levels, 90/90RP (PCME) with H3 Physics Distinction}{2015 -- 2021}
   \resumeSubHeadingListEnd
 
 
@@ -80,20 +80,21 @@
     \resumeProjectHeading
       {\textbf{Basic Home Server} $|$ Repurposed laptop running Ubuntu Server for personal use}{Feb. 2024 - Present}
       \resumeItemListStart
-        \resumeItem{Exposed to the internet via Cloudflare Tunnels and secured with Cloudflare Zero Trust}
-        \resumeItem{Utilised as a cloud compute platform to self-host backend services and primarily functioning as a NAS device}
-      \resumeItemListEnd
-    \reduceSpace{4pt}
-    \resumeProjectHeading
-      {\textbf{Programming Lead} $|$ CloudHacks 2024}{Nov. 2023 - Jun. 2024}
-      \resumeItemListStart
-        \resumeItem{Led a team of 3 using Agile methodology to redesign and rebuild promotional website with the Nextjs framework}
+        \resumeItem{Exposed to the internet via Cloudflare Tunnels and secured with Cloudflare Zero Trust for remote SSH access}
+        \resumeItem{Utilised as a cloud compute platform to self-host backend services and GitHub runners - primarily used as a NAS}
+        \resumeItem{Set up cron jobs to automate backups on AWS S3 Glacier for cost-efficient redundancy without reliance on RAID}
       \resumeItemListEnd
     \reduceSpace{4pt}
     % \resumeProjectHeading
+    %   {\textbf{Programming Lead} $|$ CloudHacks 2024}{Nov. 2023 - Jun. 2024}
+    %   \resumeItemListStart
+    %     \resumeItem{Led a team of 3 using Agile methodology to redesign and rebuild promotional website with the Nextjs framework}
+    %   \resumeItemListEnd
+    % \reduceSpace{4pt}
+    % \resumeProjectHeading
     %   {\textbf{\href{https://github.com/duckyfuz/accountingReID-hacX2023}{\underline{AIded}}} $|$ Utilised VGG16 and YOLOv8 to detect anomalies in secure workplaces, accelerating the accounting process}{}
-    \resumeProjectHeading
-      {\textbf{\href{https://github.com/duckyfuz/heritageHunt-SplashAwards2023}{\underline{HeritageHunt}}} $|$ Full-stack native application featuring a personalised and gamified way to learn about Singapore}{}
+    % \resumeProjectHeading
+    %   {\textbf{\href{https://github.com/duckyfuz/heritageHunt-SplashAwards2023}{\underline{HeritageHunt}}} $|$ Full-stack native application featuring a personalised and gamified way to learn about Singapore}{}
     % \resumeProjectHeading
     %   {\textbf{\href{https://github.com/duckyfuz/soundBytes-cloudHacks2023}{\underline{SoundBytes}}} $|$ Full-stack web application for personalised news podcasts, built with OpenAI and Amazon Polly}{}
   \resumeSubHeadingListEnd
