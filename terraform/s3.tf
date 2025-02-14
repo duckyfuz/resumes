@@ -12,6 +12,7 @@ resource "aws_s3_bucket_public_access_block" "allow_public_acl" {
   restrict_public_buckets = false
 }
 
+/*
 resource "aws_s3_object" "pdf_upload" {
   bucket       = aws_s3_bucket.resume_bucket.bucket
   key          = local.resume_key
@@ -19,6 +20,7 @@ resource "aws_s3_object" "pdf_upload" {
   content_type = "application/pdf"
   etag         = filemd5(local.resume_source)
 }
+*/
 
 resource "aws_s3_object" "json_upload" {
   bucket       = aws_s3_bucket.resume_bucket.bucket
