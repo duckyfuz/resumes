@@ -33,6 +33,7 @@ def handle_experience(data: list):
     i = 0
     while i < len(data):
         line = data[i]
+        print(line)
         if any(line.startswith(skip) for skip in to_skip):
             i += 1
             continue
@@ -45,9 +46,14 @@ def handle_experience(data: list):
                 processed_resume_data["Experience"].append(item)
             item = {}
             i += 1
-            item["title"], item["duration"] = data[i].strip("{}").split("}{")
-            i += 1
-            item["company"], item["region"] = data[i].strip("{}").split("}{")
+            # TODO: fix this janky ass code and clean up tex template
+            item["title"], item["duration"] = data[i].split("}{")
+            item["duration"] = item["duration"].replace("}", "")
+            item["title"], item["company"] = item["title"].replace("{", "").replace("}", "").split(" @ \\textit\\textbf")
+            item["region"] = ""
+            # i += 1
+            # item["company"], item["region"] = data[i].strip("{}").split("}{")
+            i += 3
         elif line.startswith("\\resumeDescription"):
             item["description"] = line.replace("\\resumeDescription{", "").rstrip("}")
         elif line.startswith("\\resumeItemListStart"):
