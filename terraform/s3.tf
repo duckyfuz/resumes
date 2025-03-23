@@ -18,6 +18,7 @@ resource "aws_s3_object" "pdf_upload" {
   source       = local.resume_source
   content_type = "application/pdf"
   etag         = filemd5(local.resume_source)
+  content_disposition = "filename=kennethgao_resume.pdf"
 }
 
 resource "aws_s3_object" "json_upload" {
