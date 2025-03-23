@@ -27,8 +27,8 @@
 % Adjust margins
 \addtolength{\oddsidemargin}{-0.5in}
 \addtolength{\evensidemargin}{-0.5in}
-\addtolength{\textwidth}{1in}
 \addtolength{\topmargin}{-0.5in}
+\addtolength{\textwidth}{1.0in}
 \addtolength{\textheight}{1.0in}
 
 \urlstyle{same}
@@ -54,33 +54,24 @@
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 
 \newcommand{\resumeItem}[1]{
-  \item\small{
-    {#1 \vspace{-2pt}}
-  }
+  \item\small{#1 \vspace{-2pt}}
 }
 
 \newcommand{\resumeDescription}[1]{
-  \item\small{
-    {#1 \vspace{-7pt}}
-  }
+  \item\small{#1 \vspace{-7pt}}
 }
 
 \newcommand{\resumeSubheading}[2]{
   \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      #1 & #2 \\
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r} #1 & #2 \\
     \end{tabular*}\vspace{-7pt}
 }
 
-\newcommand{\resumeProjectHeading}[2]{
-    \item
+\newcommand{\resumeProjectHeading}[2]{ % TODO: remove after cleaning up awards section
+  \item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
       \small#1 & #2 \\
     \end{tabular*}\vspace{-7pt}
-}
-
-\newcommand{\reduceSpace}[1]{
-  \vspace{-#1}
 }
 
 % changes the dash to a circle
