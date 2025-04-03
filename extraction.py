@@ -134,7 +134,7 @@ def extract_projects(lines, start_idx):
                 desc_part = desc_part.replace(url_match.group(0), '').strip(' -')
             
             project['name'] = name_part
-            project['description'] = desc_part
+            project['description'] = desc_part.replace('\\href', '')
             project['dates'] = dates
             
             # Process items
@@ -174,7 +174,7 @@ def extract_awards(lines, start_idx):
                 if ' - ' in part:
                     event, achievement = part.split(' - ', 1)
                     event = re.sub(r'\\textbf{([^}]+)}', r'\1', event).strip()
-                    event = re.sub(r'\\emph{([^}]+)}', r'\1', event).strip()
+                    event = re.sub(r'\\emph{([^}]+)}', r'\1', event).strip().replace('\\textbf', '')
                     achievement = re.sub(r'\\emph{([^}]+)}', r'\1', achievement).replace('\\emph', '').strip()
                     awards.append({
                         'event': event,
