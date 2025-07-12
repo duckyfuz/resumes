@@ -25,7 +25,7 @@ jobs:
 
       - name: Export resume into JSON
         run: |
-          python extraction.py --input kennethgao_resume.tex --output kennethgao_resume.json
+          python extraction/main.py kennethgao_resume.tex
 
       - name: Verify JSON presence
         run: |
