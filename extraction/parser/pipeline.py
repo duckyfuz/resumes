@@ -1,5 +1,4 @@
 import json
-import pprint
 
 from logger_config import get_logger
 logger = get_logger(__name__)
@@ -13,8 +12,6 @@ class ProcessingPipeline:
         self.filepath = filepath
         self.sections = sections
         self.identifiers = { section.replace('_', ' ').upper() : section for section in sections }
-
-        # self.split_content = None  # TODO: is this needed?
         self.res = {}
 
     def execute(self):
@@ -33,7 +30,6 @@ class ProcessingPipeline:
                 continue
             
             self.res[section] = parser.parse()
-            # pprint.pprint(self.res[section], indent=2, width=100)
 
         output_file = self.filepath.replace('.tex', '.json')
         with open(output_file, 'w') as f:
