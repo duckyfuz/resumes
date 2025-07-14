@@ -9,6 +9,7 @@ Or, perhaps you just want the tempate - copy it here on oveleaf! - https://www.o
 ## Features
 
 - Based off [Jake's Resume Template](https://www.overleaf.com/latex/templates/jakes-resume/syzfjbzwjncs), with way too many edits
+  - goal? maximize content density on a single page + align with typical SG portfolio content
 - Automatically convert .tex file into JSON, perfect for keeping your portfolio site's information up to date - just fetch from https://your.domain.here/export.json
 
 ## Getting Started
