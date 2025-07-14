@@ -2,6 +2,10 @@
 
 Tired of reuploading your most updated resume to Google Drive every time you apply to a new internship? Then this is the project for you! In just 10 minutes, you can create a SSOT for your resume and portfolio website.
 
+
+Or, perhaps you just want the tempate - copy it here on oveleaf! - https://www.overleaf.com/read/qjvqdqcznjxj#d12f4f
+
+
 ## Features
 
 - Based off [Jake's Resume Template](https://www.overleaf.com/latex/templates/jakes-resume/syzfjbzwjncs), with way too many edits
