@@ -35,7 +35,14 @@
     \resumeSubheading{\textbf{Software Engineering Intern @ \textit{Open Government Products (OGP)}}}{Sep. 2025 - Present}
     \resumeDescription{OGP builds technology for the public good, solving problems for citizens and public officers}
     \resumeItemListStart
-      \resumeItem{Interning under the Armoury team (https://reports.open.gov.sg/armoury/overview)}
+      \resumeItem{Designed a fault-tolerant archival pipeline for offloading bloated tables using AWS EventBridge and ECS, resulting in a 40\% increase in query speed by reducing database contentions and deadlocks}
+      \resumeItem{Integrated structured state tracking to ensure complete observability and reliable retries of archival jobs}
+      \resumeItem{Enhanced observability with Datadog by implementing structured logging and APM tracing for e2e traceability}
+      % \resumeItem{Engineered a new jobs architecture and archival pipeline using AWS EventBridge and ECS, improving system reliability and reducing database contentions to increase query performance by 40\%}
+      % \resumeItem{Developed a low-memory, fault-tolerant report generation service using ECS to stream data between S3 buckets, enabling efficient aggregation and delivery of large-scale data exports}
+      \resumeItem{Leveraged Localstack for development and integration tests, eliminating the need for complex and flaky mocks}
+      % \resumeItem{Improved developer experience by integrating Localstack for local AWS service testing and optimizing CI/CD pipelines through Docker layer caching}
+      % \resumeItem{Extended application functionality by implementing bulk operation endpoints, team transfer features, and UI improvements for reports and data management}
     \resumeItemListEnd
 
     \resumeSubheading{\textbf{Software Engineering Intern @ \textit{Binance}}}{May 2025 - Aug. 2025}
@@ -44,11 +51,11 @@
       \resumeItem{Implemented a caching service for third-party APIs, improving data retrieval performance by 50\%}
       \resumeItem{Developed a MFA key management extension, accelerating development workflow and reducing OTP retrieval time}
       \resumeItem{Explored rate limiter implementations to ensure system stability via managing API request rates}
-      \resumeItem{Designed RPC endpoints for action-centric workflows, reducing integration complexity}
+      \resumeItem{Designed intuitive, action-centric RPC endpoints to abstract underlying systems, reducing integration complexity}
     \resumeItemListEnd
 
-    \resumeSubheading{\textbf{Founding Software Engineer @ \textit{Check (Iterative W25)}}}{Feb. 2025 - May 2025}
-    \resumeDescription{Check offers an AI tutoring platform that enhances student performance with personalized, curriculum-aligned learning}
+    \resumeSubheading{\textbf{Founding Software Engineer @ \textit{Pallo (formerly Check, Iterative W25)}}}{Feb. 2025 - May 2025}
+    \resumeDescription{Pallo offers an AI tutoring platform that enhances student performance with personalized, curriculum-aligned learning}
     \resumeItemListStart
       \resumeItem{Engineered and launched over 5 novel features, driving a 40\% surge in user retention and engagement}
       \resumeItem{Optimized daily pg\_cron jobs to ingest thousands of session results for identifying students' areas for improvement}
@@ -65,14 +72,14 @@
       \resumeItem{Explored WASM SQLite with NoSQL backend, enabling complex analytics and cutting down backend calls by 50\%}
     \resumeItemListEnd
 
-    \resumeSubheading{\textbf{Software Engineering Intern @ \textit{NodeFlair - SEA Tech Career Platform}}}{Jan. 2024 -- Jun. 2024}
-    \resumeDescription{NodeFlair connects tech talents with job opportunities, optimizing the recruitment process for millions in SEA}
-    \resumeItemListStart
-      \resumeItem{Enhanced and optimized the existing Ruby on Rails API to support large-scale, high-availability services and boost site performance and scalability for over 400,000 monthly users}
-      % \resumeItem{Maintained and upgraded functionalities of a Plasmo browser extension, facilitating smoother access to AI tools}
-      \resumeItem{Leveraged parallel integration and e2e testing to achieve a 50\% reduction in Continuous Integration (CI) test time}
-      \resumeItem{Set up Docker images for development to mimic production environment, reducing on-boarding time by over 80\%}
-    \resumeItemListEnd
+    % \resumeSubheading{\textbf{Software Engineering Intern @ \textit{NodeFlair - SEA Tech Career Platform}}}{Jan. 2024 -- Jun. 2024}
+    % \resumeDescription{NodeFlair connects tech talents with job opportunities, optimizing the recruitment process for millions in SEA}
+    % \resumeItemListStart
+    %   \resumeItem{Enhanced and optimized the existing Ruby on Rails API to support large-scale, high-availability services and boost site performance and scalability for over 400,000 monthly users}
+    %   % \resumeItem{Maintained and upgraded functionalities of a Plasmo browser extension, facilitating smoother access to AI tools}
+    %   \resumeItem{Leveraged parallel integration and e2e testing to achieve a 50\% reduction in Continuous Integration (CI) test time}
+    %   \resumeItem{Set up Docker images for development to mimic production environment, reducing on-boarding time by over 80\%}
+    % \resumeItemListEnd
 
     % \resumeSubheading{\textbf{Software Engineering / ML Intern @ \textit{Home Team S\&T Agency (HTX)}}}{Nov. 2023 -- Jan. 2024}
     % \resumeDescription{xData builds data and AI products that enhances the Home Team's capabilities in internal and mission-based operations}
@@ -90,18 +97,19 @@
 \section{Projects / Extracurriculars}
   \resumeSubHeadingListStart
 
-    \resumeSubheading{\textbf{Insecure File Service} $|$ Simple file sharing service for public use - \href{http://ifs.kenf.dev/}{\underline{ifs.kenf.dev}}}{Sep. 2024 - Present}
+    \resumeSubheading{\textbf{Proxmox VE Homelab} $|$ repurposed laptops running LXC containers and VMs}{Feb. 2024 - Present}
     \resumeItemListStart
-      \resumeItem{Designed a serverless file sharing service using AWS Lambda, CloudFront, and S3, managed with Terraform}
-      \resumeItem{Adopted by 50+ users for sending files to public printers, eliminating the need for sign-ins on public machines}
+      \resumeItem{Implemented HA for 2-node Proxmox cluster using QDevice for quorum and ZFS replication for data redundancy}
+      \resumeItem{Enhanced security posture by facilitiating p2p connections with Tailscale as a Zero Trust Network (ZTN) solution}
+      \resumeItem{Configured a reverse proxy on a DigitalOcean droplet to handle SSL termination, optimizing network performance}
+      \resumeItem{Automated off-site backups to Backblaze B2 using systemd timers and rsync, with status updates on Telegram}
+      % \resumeItem{Utilised as a cloud compute platform for self-hosting services, enabling cost-effective testing and experimentation}
     \resumeItemListEnd
 
-    \resumeSubheading{\textbf{Linux Homelab} $|$ Repurposed Laptop Running Ubuntu Server}{Feb. 2024 - Present}
+    \resumeSubheading{\textbf{Insecure File Service} $|$ simple file sharing service for public use - \href{http://ifs.kenf.dev/}{\underline{ifs.kenf.dev}}}{Sep. 2024 - Present}
     \resumeItemListStart
-      \resumeItem{Configured a reverse proxy on a DigitalOcean droplet to handle SSL termination, optimizing network performance}
-      \resumeItem{Enhanced security posture by facilitiating p2p connections with Tailscale as a Zero Trust Network (ZTN) solution}
-      \resumeItem{Utilised as a cloud compute platform for self-hosting services, enabling cost-effective testing and rapid iteration}
-      \resumeItem{Automated off-site backups to Backblaze B2 using cron and rsync, with Telegram notifications for status updates}
+      \resumeItem{Designed a serverless file sharing service using AWS Lambda, CloudFront, and S3, managed with Terraform}
+      \resumeItem{Adopted by 50+ users for sending files to public printers, eliminating the need for insecure public machine logins}
     \resumeItemListEnd
 
   \resumeSubHeadingListEnd
