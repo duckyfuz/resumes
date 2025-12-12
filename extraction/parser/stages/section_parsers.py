@@ -10,7 +10,8 @@ class BasicParser(ABC):
         '\\', 
         'textbf{', 'large{', 'underline{', 'textit{', 'emph{',
         'resumeSubheading{', 'resumeDescription{', 'resumeItem{', 'resumeProjectHeading{',
-        '}', '{'
+        '}', '{',
+        ':'
     ]
 
     @abstractmethod
