@@ -19,7 +19,7 @@
   \resumeSubHeadingListStart
 
     \resumeSubheading{\textbf{National University of Singapore}}{Expected Grad: Dec. 2026}
-    \resumeDescription{B.Eng Computer Engineering (E-Scholars Programme), IEEE-Eta Kappa Nu (HKN) $|$ 5.0 GPA}
+    \resumeDescription{B.Eng Computer Engineering (E-Scholars Programme), IEEE-Eta Kappa Nu (HKN) $|$ 4.96 GPA}
 
     % \resumeSubheading{\textbf{Hwa Chong Institution}}{2015 - 2021}
     % \resumeDescription{GCE A-Levels (PCME with H3 Physics) $|$ 90 RP with H3 Distinction}
@@ -32,24 +32,29 @@
 \section{Experience}
   \resumeSubHeadingListStart
 
-    \resumeSubheading{\textbf{Software Engineering Intern @ \textit{Open Government Products (OGP)}}}{Sep. 2025 - Present}
+    % \resumeSubheading{\textbf{Incoming TechOps Intern @ \textit{Jump Trading}}}{May. 2026 - Aug. 2026}
+    % \resumeDescription{Jump Trading is a proprietary trading firm specializing in algorithmic and high-frequency trading across the globe}
+    % \resumeItemListStart
+    %   \resumeItem{Incoming intern under the Central Infrastructure team}
+    % \resumeItemListEnd
+
+    \resumeSubheading{\textbf{Software Engineering Intern @ \textit{Open Government Products}}}{Sep. 2025 - Feb. 2026}
     \resumeDescription{OGP builds technology for the public good, solving problems for citizens and public officers}
     \resumeItemListStart
-      \resumeItem{Designed a fault-tolerant archival pipeline for offloading bloated tables using AWS EventBridge and ECS, resulting in a 40\% increase in query speed by reducing database contentions and deadlocks}
-      \resumeItem{Integrated structured state tracking to ensure complete observability and reliable retries of archival jobs}
-      \resumeItem{Enhanced job runner observability by implementing Datadog APM instrumentation for end-to-end traceability}
-      % \resumeItem{Engineered a new jobs architecture and archival pipeline using AWS EventBridge and ECS, improving system reliability and reducing database contentions to increase query performance by 40\%}
-      % \resumeItem{Developed a low-memory, fault-tolerant report generation service using ECS to stream data between S3 buckets, enabling efficient aggregation and delivery of large-scale data exports}
-      \resumeItem{Leveraged Localstack for development and integration tests, eliminating the need for complex and flaky mocks}
-      % \resumeItem{Improved developer experience by integrating Localstack for local AWS service testing and optimizing CI/CD pipelines through Docker layer caching}
-      % \resumeItem{Extended application functionality by implementing bulk operation endpoints, team transfer features, and UI improvements for reports and data management}
+      \resumeItem{Architected a unified ECS job runner for background tasks, improving system reliability and decoupling operations}
+      \resumeItem{Enhanced job observability via Datadog APM and structured state tracking for traceability and idempotent retries}
+      \resumeItem{Designed a fault-tolerant archival pipeline for offloading bloated tables using AWS EventBridge, resulting in a 40\% increase in query speed by mitigating database contentions and deadlocks}
+      \resumeItem{Engineered a low-memory report aggregation service by streaming data between S3 buckets, enabling efficient large-scale data exports and reducing download latency from over 300s to under 2s}
+      \resumeItem{Integrated new ACL framework to decouple authorization from validation, resolving critical VAPT security findings}
+      \resumeItem{Optimized middleware to eliminate redundant database queries, resulting in latency improvements of up to 20\%}
+      \resumeItem{Utilized LocalStack to mock infrastructure, streamlining local development and eliminating unreliable test mocks}
     \resumeItemListEnd
 
     \resumeSubheading{\textbf{Software Engineering Intern @ \textit{Binance}}}{May 2025 - Aug. 2025}
     \resumeDescription{Binance empowers users to trade, invest, and manage cryptocurrencies seamlessly and securely on a global scale}
     \resumeItemListStart
       \resumeItem{Implemented a caching service for third-party APIs, improving data retrieval performance by 50\%}
-      \resumeItem{Developed a MFA key management extension, accelerating development workflow and reducing OTP retrieval time}
+      % \resumeItem{Developed a MFA key management extension, accelerating development workflow and reducing OTP retrieval time}
       \resumeItem{Explored rate limiter implementations to ensure system stability via managing API request rates}
       \resumeItem{Designed intuitive, action-centric RPC endpoints to abstract underlying systems, reducing integration complexity}
     \resumeItemListEnd
@@ -96,6 +101,11 @@
 % PROJECTS SECTION STARTS HERE
 \section{Projects / Extracurriculars}
   \resumeSubHeadingListStart
+
+    \resumeSubheading{\textbf{LowFat Memory Safety for C/C++} $|$ LLVM instrumentation pass \& runtime}{Jan. 2026 - Present}
+    \resumeItemListStart
+      \resumeItem{Recreating LowFat Pointers bounds checking for LLVM 21 based on \href{https://www.comp.nus.edu.sg/~gregory/papers/cc16lowfatptrs.pdf}{\underline{Duck \& Yap (CC'16)}}}
+    \resumeItemListEnd
 
     \resumeSubheading{\textbf{Proxmox VE Homelab} $|$ repurposed laptops running LXC containers and VMs}{Feb. 2024 - Present}
     \resumeItemListStart
