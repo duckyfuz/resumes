@@ -30,11 +30,10 @@ class HeadingParser(BasicParser):
         
     def parse(self):
         # NOTE: this is hardcoded as there are only 2 useful lines
-        name, mail_link, site_link, availability = re.split(r'\s*(?:\$\|\$|&)\s*', self.content[1])
+        name, mail_link, site_link = re.split(r'\s*(?:\$\|\$|&)\s*', self.content[1])
         linkedin, github, phone = self.content[2].split('$|$')
 
         return {
-            "availability": self.sanitize(availability.split(':')[1]),
             "email": self.sanitize(mail_link.split('}{')[1]),
             "github": self.sanitize(github.split('}{')[1]),
             "linkedin": self.sanitize(linkedin.split('}{')[1]),
