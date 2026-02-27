@@ -43,21 +43,22 @@
       \resumeItem{Integrated new ACL framework to decouple authorization from validation, resolving critical VAPT security findings}
       \resumeItem{Optimized middleware to eliminate redundant database queries, resulting in latency improvements of up to 20\%}
       \resumeItem{Utilized LocalStack to mock infrastructure, streamlining local development and eliminating unreliable test mocks}
+      \resumeItem{Introduced LocalStack for infrastructure mocking to replace flaky stubs with deterministic, reproducible test suites}
     \resumeItemListEnd
 
-    \resumeSubheading{\textbf{Software Engineering Intern @ \textit{Binance}}}{May 2025 - Aug. 2025}
-    \resumeDescription{Binance empowers users to trade, invest, and manage cryptocurrencies seamlessly and securely on a global scale}
-    \resumeItemListStart
-      \resumeItem{Implemented a caching service for third-party APIs, improving data retrieval performance by 50\%}
-      % \resumeItem{Developed a MFA key management extension, accelerating development workflow and reducing OTP retrieval time}
-      \resumeItem{Explored rate limiter implementations to ensure system stability via managing API request rates}
-      \resumeItem{Designed intuitive, action-centric RPC endpoints to abstract underlying systems, reducing integration complexity}
-    \resumeItemListEnd
+    % \resumeSubheading{\textbf{Software Engineering Intern @ \textit{Binance}}}{May 2025 - Aug. 2025}
+    % \resumeDescription{Binance empowers users to trade, invest, and manage cryptocurrencies seamlessly and securely on a global scale}
+    % \resumeItemListStart
+    %   \resumeItem{Engineered a MongoDB caching layer for 3rd-party APIs calls, reducing average data retrieval latency by 50\%}
+    %   \resumeItem{Prototyped and benchmarked token bucket and sliding window rate limiter implementations to protect public APIs}
+    %   \resumeItem{Designed intuitive, action-centric RPC endpoints to abstract underlying systems, reducing integration complexity}
+    %   % \resumeItem{Developed a MFA key management extension, accelerating development workflow and reducing OTP retrieval time}
+    % \resumeItemListEnd
 
     \resumeSubheading{\textbf{Founding Software Engineer @ \textit{Pallo (formerly Check, Iterative W25)}}}{Feb. 2025 - May 2025}
     \resumeDescription{Pallo offers an AI tutoring platform that enhances student performance with personalized, curriculum-aligned learning}
     \resumeItemListStart
-      \resumeItem{Engineered and launched over 5 novel features, driving a 40\% surge in user retention and engagement}
+      \resumeItem{Engineered and shipped 5+ novel features, driving a 40\% surge in 30-day user retention and engagement}
       \resumeItem{Optimized daily pg\_cron jobs to ingest thousands of session results for identifying students' areas for improvement}
       \resumeItem{Implemented client-side caching and lazy loading, reducing load times by over 80\% to improve user experience}
     \resumeItemListEnd
@@ -97,24 +98,24 @@
 \section{PROJECTS / EXTRACURRICULARS}
   \resumeSubHeadingListStart
 
-    \resumeSubheading{\textbf{LowFat Memory Safety for C/C++} $|$ LLVM instrumentation pass \& runtime}{Jan. 2026 - Present}
+    \resumeSubheading{\textbf{LowFat Memory Safety for C/C++} $|$ \href{https://github.com/duckyfuz/llvm-project/pull/1}{\underline{LLVM instrumentation pass \& runtime}}}{Jan. 2026 - Present}
     \resumeItemListStart
-      \resumeItem{Recreating LowFat Pointers bounds checking for LLVM 21 based on \href{https://www.comp.nus.edu.sg/~gregory/papers/cc16lowfatptrs.pdf}{\underline{Duck \& Yap (CC'16)}}}
+      \resumeItem{Recreating LowFat Pointer bounds-checking for LLVM 23, implementing custom LLVM passes in C++ to detect out-of-bounds memory accesses with minimal runtime overhead, based on \href{https://www.comp.nus.edu.sg/~gregory/papers/cc16lowfatptrs.pdf}{\underline{CC'16 (Duck \& Yap)}}}
     \resumeItemListEnd
 
-    \resumeSubheading{\textbf{Proxmox VE Homelab} $|$ repurposed laptops running LXC containers and VMs}{Feb. 2024 - Present}
+    \resumeSubheading{\textbf{Proxmox VE Homelab} $|$ repurposed laptops running LXCs and VMs}{Feb. 2024 - Present}
     \resumeItemListStart
       \resumeItem{Implemented HA for 2-node Proxmox cluster using QDevice for quorum and ZFS replication for data redundancy}
-      \resumeItem{Enhanced security posture by facilitating acilitiating p2p connections with Tailscale as a Zero Trust Network (ZTN) solution}
+      \resumeItem{Hardened cluster security by deploying Tailscale as a Zero Trust Network (ZTN) overlay, eliminating public-facing ports and enforcing device-level authentication for all peer-to-peer connections}
       \resumeItem{Configured a reverse proxy on a DigitalOcean droplet to handle SSL termination, optimizing network performance}
-      \resumeItem{Automated off-site backups to Backblaze B2 using systemd timers and rsync, with status updates on Telegram}
+      % \resumeItem{Automated off-site backups to Backblaze B2 using systemd timers and rsync, with status updates on Telegram}
       % \resumeItem{Utilised as a cloud compute platform for self-hosting services, enabling cost-effective testing and experimentation}
     \resumeItemListEnd
 
     \resumeSubheading{\textbf{Insecure File Service} $|$ simple file sharing service for public use - \href{http://ifs.kenf.dev/}{\underline{ifs.kenf.dev}}}{Sep. 2024 - Present}
     \resumeItemListStart
       \resumeItem{Designed a serverless file sharing service using AWS Lambda, CloudFront, and S3, managed with Terraform}
-      \resumeItem{Adopted by 50+ users for sending files to public printers, eliminating the need for insecure public machine logins}
+      \resumeItem{Adopted by 50+ users for sending files to public machines, eliminating the need for logins on untrusted devices}
     \resumeItemListEnd
 
   \resumeSubHeadingListEnd
@@ -133,9 +134,10 @@
 % TECHNICAL SKILLS SECTION STARTS HERE
 \section{TECHNICAL SKILLS}
  \begin{itemize}[leftmargin=0.15in, label={}]\small{\item{
-    \textbf{Languages: }{JavaScript, TypeScript, Python, Ruby, Java, C, C++, SQL, MongoDB, Cypher, Terraform, Bash} \\
-    \textbf{Frameworks: }{Next.js, React, React Native, Plasmo, Node.js, Spring Boot, Flask, Django, FastAPI, Ruby on Rails} \\
-    \textbf{Developer Tools: }{Git, Docker, AWS, Microsoft Azure, Google Cloud Platform, Firebase, Supabase, Neo4j} \\
+    \textbf{Languages: }{JavaScript, TypeScript, Python, Ruby, Java, C, C++, Cypher, Terraform, Pulumi} \\
+    \textbf{Frameworks: }{React, React Native, Plasmo, Nest.js, FastAPI, Ruby on Rails, Spring Boot} \\
+    % \textbf{Developer Tools: }{Docker, AWS, Microsoft Azure, Google Cloud Platform, Firebase, Supabase, Neo4j} \\
+    % \textbf{Databses: }{SQL, MongoDB} \\
   }}
  \end{itemize}
 % END OF SECTION %
