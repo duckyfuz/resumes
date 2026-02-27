@@ -40,7 +40,7 @@ class HeadingParser(BasicParser):
     def parse(self):
         # NOTE: this is hardcoded as there are only 2 useful lines
         name, mail_link, site_link, location = re.split(r"\s*(?:\$\|\$|&)\s*", self.content[1])
-        linkedin, github, phone, visa = re.split(r"\s*(?:\$\|\$|&)\s*", self.content[2])
+        linkedin, github, phone, _ = re.split(r"\s*(?:\$\|\$|&)\s*", self.content[2])
 
         return {
             "name": self.sanitize(name),
@@ -50,7 +50,6 @@ class HeadingParser(BasicParser):
             "linkedin": self.sanitize(linkedin.split("}{")[1]),
             "github": self.sanitize(github.split("}{")[1]),
             "phone": self.sanitize(phone),
-            "visa": self.sanitize(visa.split(" ", 2)[2]),
         }
 
 
