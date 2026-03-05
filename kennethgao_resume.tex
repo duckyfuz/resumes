@@ -20,7 +20,7 @@
 
     \resumeSubheading{\textbf{National University of Singapore}}{Expected Grad: Dec 2026}
     \resumeDescription{B.Eng Computer Engineering (E-Scholars Programme), IEEE-Eta Kappa Nu (HKN) $|$ 4.96/5.0 GPA}
-    \resumeDescription{Relevant Coursework: CS5250 Advanced Operating Systems, CS3211 Concurrent Programming}
+    \resumeDescription{Coursework: CS5250 Advanced Operating Systems, CS3211 Concurrent Programming, EE4204 Computer Networks}
 
     % \resumeSubheading{\textbf{Hwa Chong Institution}}{2015 - 2021}
     % \resumeDescription{GCE A-Levels (PCME with H3 Physics) $|$ 90 RP with H3 Distinction}
@@ -70,7 +70,6 @@
       \resumeItem{Led development of replay feature with Athena for event-driven architecture, accelerating disaster recovery by 80\%}
       \resumeItem{Built CRUD module for hierarchical data access permissions using composite keys in AWS DynamoDB (NoSQL)}
       \resumeItem{Prototyped WASM SQLite client-side query engine on top of a DynamoDB backend, enabling complex ad-hoc analytics without additional backend endpoints and reducing API call volume by 50\%}
-
     \resumeItemListEnd
 
     % \resumeSubheading{\textbf{Software Engineering Intern @ \textit{NodeFlair - SEA Tech Career Platform}}}{Jan 2024 - Jun 2024}
@@ -98,9 +97,10 @@
 \section{PROJECTS}
   \resumeSubHeadingListStart
 
-    \resumeSubheading{\textbf{LowFat Memory Safety for C/C++} $|$ \href{https://github.com/duckyfuz/llvm-project/pull/1}{\underline{LLVM instrumentation pass \& runtime}}}{Jan 2026 - Present}
+    \resumeSubheading{\textbf{Lightweight Bounds Checking for C/C++} $|$ \href{https://github.com/duckyfuz/llvm-project/pull/1}{\underline{LLVM instrumentation \& runtime}}}{Jan 2026 - Present}
     \resumeItemListStart
-      \resumeItem{Recreating LowFat Pointer bounds-checking for LLVM 23, implementing custom LLVM passes in C++ to detect out-of-bounds memory accesses with minimal runtime overhead, based on \href{https://www.comp.nus.edu.sg/~gregory/papers/cc16lowfatptrs.pdf}{\underline{CC'16 (Duck \& Yap)}}}
+      \resumeItem{Developed a low-overhead bounds-checking tool for LLVM 23 using custom C++ passes to detect out-of-bounds memory accesses, based on \href{https://www.comp.nus.edu.sg/~gregory/papers/cc16lowfatptrs.pdf}{\underline{CC'16 (Duck \& Yap)}}'s methodology}
+      \resumeItem{Estimating a restricted heap allocation overhead of 11\% (compared to ASan's 146\%), while aiming for 13\% faster memory access times and a leaner physical memory (RSS) footprint}
     \resumeItemListEnd
 
     \resumeSubheading{\textbf{Proxmox VE Homelab} $|$ repurposed laptops running LXCs and VMs}{Feb 2024 - Present}
@@ -134,9 +134,9 @@
 % TECHNICAL SKILLS SECTION STARTS HERE
 \section{TECHNICAL SKILLS}
  \begin{itemize}[leftmargin=0.15in, label={}]\small{\item{
-    \textbf{Languages: }{JavaScript, TypeScript, Python, Ruby, Java, C, C++} \\
+    \textbf{Languages: }{C, C++, Java, Python, JavaScript, TypeScript} \\
     \textbf{Frameworks: }{React, React Native, Plasmo, NestJS, FastAPI, Ruby on Rails, Spring Boot} \\
-    \textbf{Tooling \& Cloud: }{Docker, AWS, GCP, Datadog, Firebase, Supabase, Terraform, Pulumi} \\
+    \textbf{Tooling \& Cloud: }{Docker, AWS, GCP, Datadog, Firebase, Supabase, Terraform, Pulumi, Kubernetes, Ansible, Proxmox} \\
     \textbf{Databases: }{SQLite, PostgreSQL, DynamoDB, MongoDB, Neo4j (Cypher), Redis, Elasticsearch} \\
   }}
  \end{itemize}
