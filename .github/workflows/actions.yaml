@@ -61,6 +61,7 @@ jobs:
           cp resume.pdf public/
           cp resume.json public/
           cp resume.json public/export.json
+          echo "/ /resume.pdf 302" > public/_redirects
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
