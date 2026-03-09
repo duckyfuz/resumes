@@ -19,13 +19,16 @@ Or, perhaps you just want the template - copy it here on oveleaf! - https://www.
 2. **Update your Content:**
    - Update the `resume.tex` file with YOUR own details.
 
-3. **Configure your Domain:**
-   - Open `terraform/variables.tf` and change the default values to match your custom domain and Cloudflare account IDs.
+3. **Configure your Variables:**
+   - Go to your GitHub repository **Settings -> Secrets and variables -> Actions -> Variables**.
+   - Add a `DOMAIN_NAME` variable (e.g. `resume.yourdomain.com`).
+   - Add a `PROJECT_NAME` variable (e.g. `resume-hosting`).
 
 4. **Add CI/CD Secrets:**
-   - Go to your GitHub repository **Settings -> Secrets and variables -> Actions**.
+   - Go to your GitHub repository **Settings -> Secrets and variables -> Actions -> Secrets**.
    - Add your `CLOUDFLARE_API_TOKEN` (Create one with 'Pages' and 'DNS' edit permissions from your Cloudflare dashboard).
    - Add your `CLOUDFLARE_ACCOUNT_ID`.
+   - Add your `CLOUDFLARE_ZONE_ID`.
 
 5. **Deploy:**
    - Push your changes to the `main` branch! GitHub Actions will compile your PDF, extract the JSON, setup the Cloudflare architecture using Terraform, and deploy the site instantly.
