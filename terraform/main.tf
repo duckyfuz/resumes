@@ -1,8 +1,14 @@
 terraform {
+  backend "s3" {
+    bucket = "ken-tf-state-bucket"
+    key    = "resume-hosting-tf-key"
+    region = "ap-southeast-1"
+  }
+
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 4.0"
+      version = "4.40.0"
     }
   }
 }
