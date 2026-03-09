@@ -352,3 +352,4 @@ override.tf.json
 terraform.rc
 
 node_modules/
+resume.json
