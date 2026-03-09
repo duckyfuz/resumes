@@ -351,5 +351,4 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-# Ignore extracted JSON file
-kennethgao_resume.json
+node_modules/
