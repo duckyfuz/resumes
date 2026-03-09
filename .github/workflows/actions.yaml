@@ -7,13 +7,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_and_deploy:
-    name: LaTeX Build, Terraform Plan and Deploy
+  build_resume:
+    name: LaTeX Build and JSON Extraction
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -38,6 +34,21 @@ jobs:
           test -f resume.pdf || (echo "resume.pdf not found!" && exit 1)
           test -f resume.json || (echo "resume.json not found!" && exit 1)
 
+      - name: Upload Resume Assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume-assets
+          path: |
+            resume.pdf
+            resume.json
+
+  manage_infrastructure:
+    name: Terraform Infrastructure Management
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
 
@@ -54,6 +65,22 @@ jobs:
           terraform init
           terraform apply --auto-approve
         working-directory: ./terraform
+
+  deploy_to_pages:
+    name: Cloudflare Pages Deployment
+    needs: [build_resume, manage_infrastructure]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download Resume Assets
+        uses: actions/download-artifact@v4
+        with:
+          name: resume-assets
 
       - name: Create Public Directory
         run: |
