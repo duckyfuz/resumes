@@ -1,6 +1,6 @@
 output "pages_project_domain" {
   description = "The generated default domain for the Cloudflare Pages project"
-  value       = "${cloudflare_pages_project.resume_project.name}.pages.dev"
+  value       = cloudflare_pages_project.resume_project.subdomain
 }
 
 output "custom_domain_url" {
