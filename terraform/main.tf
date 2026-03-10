@@ -1,8 +1,10 @@
 terraform {
-  backend "s3" {
-    bucket = "ken-tf-state-bucket"
-    key    = "resume-hosting-tf-key"
-    region = "ap-southeast-1"
+  cloud {
+    organization = "kenf-hcp-org"
+
+    workspaces {
+      name = "resume-hosting"
+    }
   }
 
   required_providers {
