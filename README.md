@@ -1,63 +1,47 @@
 # Resume Hosting on Cloudflare Pages
 
-Tired of reuploading your most updated resume to Google Drive every time you apply to a new internship? Then this is the project for you! In just 10 minutes, you can create a Single Source of Truth for your resume and portfolio website.
-
-Or, perhaps you just want the template - copy it here on oveleaf! - https://www.overleaf.com/read/qjvqdqcznjxj#d12f4f
+Maintain a professional resume in LaTeX and automatically serve it as a high-quality PDF and a structured JSON API for your portfolio website.
 
 ## Features
 
-- Based off [Jake's Resume Template](https://www.overleaf.com/latex/templates/jakes-resume/syzfjbzwjncs), with way too many edits
-  - goal? maximize content density on a single page + align with typical SG portfolio content
-- Automatically convert `.tex` file into JSON, perfect for keeping your portfolio site's information up to date - just fetch from `https://your.domain.here/resume.json`
-- Generates beautiful PDFs during CI/CD - no need to commit PDFs anymore!
-- Free, instant edge hosting natively supported via Cloudflare Pages and Terraform.
+- **Single Source of Truth**: Edit `resume.tex`, and the system handles the rest.
+- **Dynamic Previews**: Every Pull Request creates a unique preview URL (e.g., `resume-4.kenf.dev`).
+- **Headless API**: Access your resume data at `your-domain.com/resume.json`.
+- **Hands-off Infrastructure**: Automatic deployment and cleanup via GitHub Actions and Terraform.
 
-## Getting Started
+## Quick Start (10 Minutes)
 
-1. **Fork** this repository.
+### 1. External Setup
+- **LaTeX Content**: We recommend starting with our [Overleaf Template](https://www.overleaf.com/read/qjvqdqcznjxj#d12f4f). Customize your resume there, then copy the content to your local `resume.tex`.
+- **HCP Terraform**: [Create an account](https://app.terraform.io/public/signup/account) and an **Organization**. Generate a [User API Token](https://app.terraform.io/app/settings/tokens).
+- **Cloudflare**: Get your **Account ID**, **Zone ID** for your domain, and an **API Token** (with 'Pages' and 'DNS' edit permissions).
 
-2. **Update your Content:**
-   - Update the `resume.tex` file with YOUR own details.
+### 2. Fork & Configure
+Fork this repo and add the following to **Settings -> Secrets and variables -> Actions**:
 
-3. **Configure your Variables:**
-   - Go to your GitHub repository **Settings -> Secrets and variables -> Actions -> Variables**.
-   - Add a `DOMAIN_NAME` variable (e.g. `resume.yourdomain.com`).
-   - Add a `PROJECT_NAME` variable (e.g. `resume-hosting`).
+**Secrets:**
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
+- `CLOUDFLARE_ZONE_ID`
+- `TF_API_TOKEN` (Your HCP Terraform Token)
 
-4. **Add CI/CD Secrets:**
-   - Go to your GitHub repository **Settings -> Secrets and variables -> Actions -> Secrets**.
-   - Add your `CLOUDFLARE_API_TOKEN` (Create one with 'Pages' and 'DNS' edit permissions from your Cloudflare dashboard).
-   - Add your `CLOUDFLARE_ACCOUNT_ID`.
-   - Add your `CLOUDFLARE_ZONE_ID`.
+**Variables:**
+- `DOMAIN_NAME`: e.g., `resume.kenf.dev`
+- `PROJECT_NAME`: e.g., `resume-hosting`
 
-5. **Deploy:**
-   - Push your changes to the `main` branch! GitHub Actions will compile your PDF, extract the JSON, setup the Cloudflare architecture using Terraform, and deploy the site instantly.
+### 3. Deploy
+- **Production**: Push to `main`. The system will automatically create your HCP Terraform workspace and deploy to your domain.
+- **Previews**: Create a Pull Request. A unique environment will be provisioned automatically and destroyed when the PR is closed.
 
-## Recommended Tools
+---
 
-### LaTeX Workshop Extension
+## Technical Details
 
-For the best experience when working in this project, I recommend installing the [LaTeX Workshop extension](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) for Visual Studio Code. This extension provides:
+### JSON Extraction
+The Python pipeline in `extraction/` parses the LaTeX source using specific comment markers:
+- `% SECTION STARTS HERE`
+- `% END OF SECTION`
 
-- Real-time PDF preview
-- Automatic compilation on save
-- Intelligent code completion
-- Error detection and reporting
-- SyncTeX support for easy navigation between source and PDF
-- Built-in snippets for faster LaTeX writing
-- Support for bibliography management
+### Local Development
+If you want to compile locally, we recommend the [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) extension for VS Code.
 
-To install:
-
-1. Open VS Code
-2. Install [LaTeX Workshop extension](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
-3. Install your LaTeX distribution (I used [TeX Live](https://www.tug.org/texlive/))
-4. Add directory of TeX Live binaries to your PATH environment (I added `export PATH=$PATH:/usr/local/texlive/2025/bin/universal-darwin` to my `~/.zshrc` file, your mileage may vary)
-
-## Contributing
-
-Feel free to fork this repository and customize it for your own use. If you make improvements that could benefit others, please submit a pull request.
-
-## License
-
-This project is open source and available under the MIT License.
