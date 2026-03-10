@@ -20,7 +20,6 @@ class BasicParser(ABC):
         "resumeProjectHeading{",
         "}",
         "{",
-        ":",
     ]
 
     @abstractmethod
@@ -28,6 +27,11 @@ class BasicParser(ABC):
         pass
 
     def sanitize(self, line):
+        import re
+
+        line = re.sub(r"\\href{([^}]+)}{\\underline{([^}]+)}}", r"[\2](\1)", line)
+        line = re.sub(r"\\href{([^}]+)}{([^}]+)}", r"[\2](\1)", line)
+
         for item in self.replace_set:
             line = line.replace(item, "")
         return line.strip()
@@ -39,7 +43,9 @@ class HeadingParser(BasicParser):
 
     def parse(self):
         # NOTE: this is hardcoded as there are only 2 useful lines
-        name, mail_link, site_link, location = re.split(r"\s*(?:\$\|\$|&)\s*", self.content[1])
+        name, mail_link, site_link, location = re.split(
+            r"\s*(?:\$\|\$|&)\s*", self.content[1]
+        )
         linkedin, github, phone, _ = re.split(r"\s*(?:\$\|\$|&)\s*", self.content[2])
 
         return {
@@ -153,9 +159,8 @@ class TechnicalSkillsParser(BasicParser):
         for line in self.content:
             if line.startswith("\\textbf{"):
                 key, entries = line.split("}{", 1)
-                res[self.sanitize(key)] = [
-                    self.sanitize(entry) for entry in entries.split(",")
-                ]
+                clean_key = self.sanitize(key).rstrip(":")
+                res[clean_key] = [self.sanitize(entry) for entry in entries.split(",")]
         return res
 
 

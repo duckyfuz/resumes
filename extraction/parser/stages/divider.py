@@ -8,10 +8,10 @@ class Divider:
         self.filepath = filepath
         self.identifiers = identifiers
 
-        self.split_content = { section : [] for section in sections }
+        self.split_content = {section: [] for section in sections}
 
     def divide(self):
-        with open(self.filepath, 'r') as file:
+        with open(self.filepath, "r") as file:
             current_section = None
             for line in file:
                 if SECTION_BREAK_IDENTIFIER in line:
@@ -19,16 +19,16 @@ class Divider:
                         if identifier in line:
                             current_section = section
                             break
-                    continue # skip to the next line
-                
+                    continue  # skip to the next line
+
                 if not current_section:
                     continue
-                
-                if re.match(r'^\s*%', line):
+
+                if re.match(r"^\s*%", line):
                     if not INCLUDE_ARCHIVED_LINES:
                         continue
-                    else: 
-                        line = line.split('%')[1]
+                    else:
+                        line = re.sub(r"^(?:\s*%)+\s*", "", line)
 
                 self.split_content[current_section].append(line.strip())
 
