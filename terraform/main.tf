@@ -1,9 +1,9 @@
 terraform {
-  backend "remote" {
+  cloud {
     organization = "kenf-hcp-org"
 
     workspaces {
-      prefix = "resume-hosting-"
+      name = "RESUME_HOSTING_WORKSPACE_PLACEHOLDER"
     }
   }
 
