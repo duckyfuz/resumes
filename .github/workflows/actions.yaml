@@ -62,11 +62,11 @@ jobs:
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
             echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
             echo "project_name=${{ vars.PROJECT_NAME }}-pr-${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
-            echo "TF_WORKSPACE=${{ vars.PROJECT_NAME }}-pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+            echo "TF_WORKSPACE=pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
           else
             echo "PR_NUMBER=" >> $GITHUB_ENV
             echo "project_name=${{ vars.PROJECT_NAME }}" >> $GITHUB_OUTPUT
-            echo "TF_WORKSPACE=${{ vars.PROJECT_NAME }}" >> $GITHUB_ENV
+            echo "TF_WORKSPACE=main" >> $GITHUB_ENV
           fi
 
       - name: Apply Terraform changes
@@ -81,7 +81,6 @@ jobs:
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
         run: |
           terraform init
-          terraform workspace select -or-create ${{ env.TF_WORKSPACE }}
           terraform apply --auto-approve
         working-directory: ./terraform
 

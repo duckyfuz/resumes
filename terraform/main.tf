@@ -1,9 +1,9 @@
 terraform {
-  cloud {
+  backend "remote" {
     organization = "kenf-hcp-org"
 
     workspaces {
-      tags = ["resume-hosting"]
+      prefix = "resume-hosting-"
     }
   }
 
