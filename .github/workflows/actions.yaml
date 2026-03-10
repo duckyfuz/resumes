@@ -77,12 +77,14 @@ jobs:
           TF_VAR_domain_name: ${{ vars.DOMAIN_NAME }}
           TF_VAR_project_name: ${{ vars.PROJECT_NAME }}
           TF_VAR_pr_number: ${{ env.PR_NUMBER }}
+          TF_VAR_branch_name: ${{ github.head_ref || github.ref_name }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           terraform init -backend-config="key=${{ env.STATE_KEY }}"
           terraform apply --auto-approve
         working-directory: ./terraform
+
 
   deploy_to_pages:
     name: Cloudflare Pages Deployment
