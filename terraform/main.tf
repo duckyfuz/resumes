@@ -3,7 +3,7 @@ terraform {
     organization = "kenf-hcp-org"
 
     workspaces {
-      name = "resume-hosting"
+      tags = ["resume-hosting"]
     }
   }
 

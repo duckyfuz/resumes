@@ -81,6 +81,7 @@ jobs:
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
         run: |
           terraform init
+          terraform workspace select -or-create ${{ env.TF_WORKSPACE }}
           terraform apply --auto-approve
         working-directory: ./terraform
 
