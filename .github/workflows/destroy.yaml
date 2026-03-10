@@ -42,8 +42,9 @@ jobs:
                --header "Content-Type: application/vnd.api+json" \
                --request POST \
                --data "{\"data\":{\"attributes\":{\"name\":\"${{ env.WS_NAME }}\",\"execution-mode\":\"local\"},\"type\":\"workspaces\"}}" \
-               https://app.terraform.io/api/v2/organizations/kenf-hcp-org/workspaces || true
+               https://app.terraform.io/api/v2/organizations/${{ vars.TF_ORGANIZATION }}/workspaces || true
 
+          sed -i "s/TF_ORGANIZATION_PLACEHOLDER/${{ vars.TF_ORGANIZATION }}/g" main.tf
           sed -i "s/RESUME_HOSTING_WORKSPACE_PLACEHOLDER/${{ env.WS_NAME }}/g" main.tf
           terraform init
           terraform destroy --auto-approve
@@ -54,5 +55,5 @@ jobs:
                --header "Authorization: Bearer ${{ secrets.TF_API_TOKEN }}" \
                --header "Content-Type: application/vnd.api+json" \
                --request DELETE \
-               "https://app.terraform.io/api/v2/organizations/kenf-hcp-org/workspaces/${{ env.WS_NAME }}" || echo "Workspace deletion failed or already deleted"
+               "https://app.terraform.io/api/v2/organizations/${{ vars.TF_ORGANIZATION }}/workspaces/${{ env.WS_NAME }}" || echo "Workspace deletion failed or already deleted"
         working-directory: ./terraform
