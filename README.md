@@ -6,32 +6,42 @@ Or, perhaps you just want the template - copy it here on oveleaf! - https://www.
 
 ## Features
 
-- Based off [Jake's Resume Template](https://www.overleaf.com/latex/templates/jakes-resume/syzfjbzwjncs), with way too many edits
-  - goal? maximize content density on a single page + align with typical SG portfolio content
-- Automatically convert `.tex` file into JSON, perfect for keeping your portfolio site's information up to date - just fetch from `https://your.domain.here/resume.json`
-- Generates beautiful PDFs during CI/CD - no need to commit PDFs anymore!
-- Free, instant edge hosting natively supported via Cloudflare Pages and Terraform.
+- **LaTeX Source of Truth**: Based off [Jake's Resume Template](https://www.overleaf.com/latex/templates/jakes-resume/syzfjbzwjncs), optimized for content density.
+- **Automated Data Extraction**: Automatically converts `.tex` into clean `resume.json`, perfect for a headless portfolio site API (fetch from `https://your.domain.com/resume.json`).
+- **PDF Generation**: High-quality PDF compiled during CI/CD—no need to commit binaries.
+- **PR Preview Environments**: Every Pull Request automatically provisions a unique Cloudflare Pages project and domain (e.g., `resume-4.kenf.dev`) for instant review.
+- **Automatic Cleanup**: PR infrastructure is automatically destroyed when the PR is closed or merged.
+- **Cloud Infrastructure**: Fully managed via Terraform and HCP Terraform (Terraform Cloud) for state isolation.
 
 ## Getting Started
 
 1. **Fork** this repository.
 
-2. **Update your Content:**
+2. **Setup HCP Terraform (Terraform Cloud):**
+   - Create an account at [app.terraform.io](https://app.terraform.io).
+   - Create an organization (e.g., `your-org-name`).
+   - Create a workspace named `resume-hosting` using the **CLI-driven workflow**.
+   - In Workspace Settings -> General, set **Execution Mode** to **Local**.
+   - Add the tag `resume-hosting` to the workspace.
+
+3. **Update your Content:**
    - Update the `resume.tex` file with YOUR own details.
 
-3. **Configure your Variables:**
-   - Go to your GitHub repository **Settings -> Secrets and variables -> Actions -> Variables**.
-   - Add a `DOMAIN_NAME` variable (e.g. `resume.yourdomain.com`).
-   - Add a `PROJECT_NAME` variable (e.g. `resume-hosting`).
+4. **Configure GitHub Variables:**
+   - Go to **Settings -> Secrets and variables -> Actions -> Variables**.
+   - `DOMAIN_NAME`: Your resume domain (e.g., `resume.kenf.dev`).
+   - `PROJECT_NAME`: Your Cloudflare Pages project prefix (e.g., `resume-hosting`).
 
-4. **Add CI/CD Secrets:**
-   - Go to your GitHub repository **Settings -> Secrets and variables -> Actions -> Secrets**.
-   - Add your `CLOUDFLARE_API_TOKEN` (Create one with 'Pages' and 'DNS' edit permissions from your Cloudflare dashboard).
-   - Add your `CLOUDFLARE_ACCOUNT_ID`.
-   - Add your `CLOUDFLARE_ZONE_ID`.
+5. **Configure GitHub Secrets:**
+   - Go to **Settings -> Secrets and variables -> Actions -> Secrets**.
+   - `CLOUDFLARE_API_TOKEN`: Token with 'Pages' and 'DNS' edit permissions.
+   - `CLOUDFLARE_ACCOUNT_ID`: Your Cloudflare Account ID.
+   - `CLOUDFLARE_ZONE_ID`: The Zone ID for your domain.
+   - `TF_API_TOKEN`: An API token from HCP Terraform (User Settings -> Tokens).
 
-5. **Deploy:**
-   - Push your changes to the `main` branch! GitHub Actions will compile your PDF, extract the JSON, setup the Cloudflare architecture using Terraform, and deploy the site instantly.
+6. **Deploy:**
+   - Push to `main` to deploy your production resume.
+   - Create a **Pull Request** to see a preview environment at `resume-[PR_NUMBER].[yourdomain.com]`.
 
 ## Recommended Tools
 
