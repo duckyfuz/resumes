@@ -85,8 +85,9 @@ jobs:
                --header "Content-Type: application/vnd.api+json" \
                --request POST \
                --data "{\"data\":{\"attributes\":{\"name\":\"${{ env.WS_NAME }}\",\"execution-mode\":\"local\"},\"type\":\"workspaces\"}}" \
-               https://app.terraform.io/api/v2/organizations/kenf-hcp-org/workspaces || true
+               https://app.terraform.io/api/v2/organizations/${{ vars.TF_ORGANIZATION }}/workspaces || true
           
+          sed -i "s/TF_ORGANIZATION_PLACEHOLDER/${{ vars.TF_ORGANIZATION }}/g" main.tf
           sed -i "s/RESUME_HOSTING_WORKSPACE_PLACEHOLDER/${{ env.WS_NAME }}/g" main.tf
           terraform init
           terraform apply --auto-approve

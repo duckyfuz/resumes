@@ -28,6 +28,7 @@ Fork this repo and add the following to **Settings -> Secrets and variables -> A
 **Variables:**
 - `DOMAIN_NAME`: e.g., `resume.kenf.dev`
 - `PROJECT_NAME`: e.g., `resume-hosting`
+- `TF_ORGANIZATION`: Your HCP Terraform Organization name.
 
 ### 3. Deploy
 - **Production**: Push to `main`. The system will automatically create your HCP Terraform workspace and deploy to your domain.

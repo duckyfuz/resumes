@@ -1,6 +1,6 @@
 terraform {
   cloud {
-    organization = "kenf-hcp-org"
+    organization = "TF_ORGANIZATION_PLACEHOLDER"
 
     workspaces {
       name = "RESUME_HOSTING_WORKSPACE_PLACEHOLDER"
