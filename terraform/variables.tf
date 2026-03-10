@@ -23,3 +23,9 @@ variable "pr_number" {
   type        = string
   default     = ""
 }
+
+variable "branch_name" {
+  description = "The name of the branch being deployed"
+  type        = string
+  default     = "main"
+}

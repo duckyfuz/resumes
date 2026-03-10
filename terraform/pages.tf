@@ -14,7 +14,7 @@ locals {
 resource "cloudflare_pages_project" "resume_project" {
   account_id    = var.cloudflare_account_id
   name          = local.effective_project_name
-  production_branch = "main"
+  production_branch = var.branch_name
 
   # We use the build configuration purely to dictate the deployment directory, 
   # as CI/CD will place the generated files here before deployment
