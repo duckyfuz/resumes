@@ -47,4 +47,12 @@ jobs:
           sed -i "s/RESUME_HOSTING_WORKSPACE_PLACEHOLDER/${{ env.WS_NAME }}/g" main.tf
           terraform init
           terraform destroy --auto-approve
+
+          # Delete workspace via API after successful destroy
+          echo "Deleting Terraform workspace: ${{ env.WS_NAME }}"
+          curl --silent --fail --show-error --location \
+               --header "Authorization: Bearer ${{ secrets.TF_API_TOKEN }}" \
+               --header "Content-Type: application/vnd.api+json" \
+               --request DELETE \
+               "https://app.terraform.io/api/v2/organizations/kenf-hcp-org/workspaces/${{ env.WS_NAME }}" || echo "Workspace deletion failed or already deleted"
         working-directory: ./terraform
