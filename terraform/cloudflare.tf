@@ -1,6 +1,6 @@
 resource "cloudflare_record" "resume_cname" {
   zone_id = var.cloudflare_zone_id
-  name    = var.domain_name
+  name    = locals.effective_domain_name
   type    = "CNAME"
   
   # Point the custom domain directly to the Pages project's canonical subdomain
