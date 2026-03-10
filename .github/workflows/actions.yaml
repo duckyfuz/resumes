@@ -62,9 +62,11 @@ jobs:
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
             echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
             echo "project_name=${{ vars.PROJECT_NAME }}-pr-${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
+            echo "STATE_KEY=resume-hosting-tf-key-pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
           else
             echo "PR_NUMBER=" >> $GITHUB_ENV
             echo "project_name=${{ vars.PROJECT_NAME }}" >> $GITHUB_OUTPUT
+            echo "STATE_KEY=resume-hosting-tf-key" >> $GITHUB_ENV
           fi
 
       - name: Apply Terraform changes
@@ -78,7 +80,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          terraform init
+          terraform init -backend-config="key=${{ env.STATE_KEY }}"
           terraform apply --auto-approve
         working-directory: ./terraform
 
