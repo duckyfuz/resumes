@@ -58,8 +58,6 @@ To install:
 
 Feel free to fork this repository and customize it for your own use. If you make improvements that could benefit others, please submit a pull request.
 
-Honestly, if someone helped me clean up all the spaghetti and move all variables to a single file I would be VERY VERY VERY grateful...
-
 ## License
 
 This project is open source and available under the MIT License.
