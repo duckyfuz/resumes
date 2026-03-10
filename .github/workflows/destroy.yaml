@@ -21,10 +21,10 @@ jobs:
         run: |
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
             echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
-            echo "TF_WORKSPACE=${{ vars.PROJECT_NAME }}-pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+            echo "WS_NAME=${{ vars.PROJECT_NAME }}-pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
           else
             echo "PR_NUMBER=" >> $GITHUB_ENV
-            echo "TF_WORKSPACE=${{ vars.PROJECT_NAME }}" >> $GITHUB_ENV
+            echo "WS_NAME=${{ vars.PROJECT_NAME }}" >> $GITHUB_ENV
           fi
 
       - name: Destroy Terraform changes
@@ -37,6 +37,14 @@ jobs:
           TF_VAR_pr_number: ${{ env.PR_NUMBER }}
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
         run: |
+          # Create workspace via API if it doesn't exist (safety)
+          curl --header "Authorization: Bearer ${{ secrets.TF_API_TOKEN }}" \
+               --header "Content-Type: application/vnd.api+json" \
+               --request POST \
+               --data "{\"data\":{\"attributes\":{\"name\":\"${{ env.WS_NAME }}\",\"execution-mode\":\"local\"},\"type\":\"workspaces\"}}" \
+               https://app.terraform.io/api/v2/organizations/kenf-hcp-org/workspaces || true
+
+          sed -i "s/RESUME_HOSTING_WORKSPACE_PLACEHOLDER/${{ env.WS_NAME }}/g" main.tf
           terraform init
           terraform destroy --auto-approve
         working-directory: ./terraform
