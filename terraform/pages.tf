@@ -5,15 +5,15 @@ locals {
   # For PR previews, construct the domain as resume-xx.domain.com
   # Assuming var.domain_name is something like 'resume.kenf.dev'
   domain_parts = split(".", var.domain_name)
-  base_domain  = join(".", slice(locals.domain_parts, 1, length(locals.domain_parts)))
-  subdomain    = locals.domain_parts[0]
+  base_domain  = join(".", slice(local.domain_parts, 1, length(local.domain_parts)))
+  subdomain    = local.domain_parts[0]
   
-  effective_domain_name = var.pr_number == "" ? var.domain_name : "${locals.subdomain}-${var.pr_number}.${locals.base_domain}"
+  effective_domain_name = var.pr_number == "" ? var.domain_name : "${local.subdomain}-${var.pr_number}.${local.base_domain}"
 }
 
 resource "cloudflare_pages_project" "resume_project" {
   account_id    = var.cloudflare_account_id
-  name          = locals.effective_project_name
+  name          = local.effective_project_name
   production_branch = "main"
 
   # We use the build configuration purely to dictate the deployment directory, 
@@ -27,5 +27,5 @@ resource "cloudflare_pages_project" "resume_project" {
 resource "cloudflare_pages_domain" "resume_domain" {
   account_id   = var.cloudflare_account_id
   project_name = cloudflare_pages_project.resume_project.name
-  domain       = locals.effective_domain_name
+  domain       = local.effective_domain_name
 }
