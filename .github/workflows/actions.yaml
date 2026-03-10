@@ -49,6 +49,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       project_name: ${{ steps.set_outputs.outputs.project_name }}
+      effective_domain_name: ${{ steps.terraform_output.outputs.effective_domain_name }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -70,6 +71,7 @@ jobs:
           fi
 
       - name: Apply Terraform changes
+        id: terraform_output
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           TF_VAR_cloudflare_account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -80,7 +82,6 @@ jobs:
           TF_VAR_branch_name: ${{ github.head_ref || github.ref_name }}
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
         run: |
-          # Create workspace via API if it doesn't exist
           curl --header "Authorization: Bearer ${{ secrets.TF_API_TOKEN }}" \
                --header "Content-Type: application/vnd.api+json" \
                --request POST \
@@ -91,6 +92,9 @@ jobs:
           sed -i "s/RESUME_HOSTING_WORKSPACE_PLACEHOLDER/${{ env.WS_NAME }}/g" main.tf
           terraform init
           terraform apply --auto-approve
+
+          EFFECTIVE_DOMAIN=$(terraform output -raw effective_domain_name)
+          echo "effective_domain_name=$EFFECTIVE_DOMAIN" >> $GITHUB_OUTPUT
         working-directory: ./terraform
 
 
@@ -101,6 +105,7 @@ jobs:
     permissions:
       contents: read
       deployments: write
+      pull-requests: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -127,3 +132,18 @@ jobs:
           directory: "public"
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.head_ref || github.ref_name }}
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DOMAIN: ${{ needs.manage_infrastructure.outputs.effective_domain_name }}
+        run: |
+          gh pr comment ${{ github.event.pull_request.number }} --body "🚀 **Deployment Successful!**
+          
+          Your resume preview is live at:
+          - 🔗 **Preview Link:** [https://${DOMAIN}](https://${DOMAIN})
+          - 📄 **Direct PDF:** [https://${DOMAIN}/resume.pdf](https://${DOMAIN}/resume.pdf)
+          - 📦 **JSON API:** [https://${DOMAIN}/resume.json](https://${DOMAIN}/resume.json)
+          
+          _Built from commit ${{ github.sha }}_"
