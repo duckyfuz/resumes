@@ -12,6 +12,7 @@ Maintain a professional resume in LaTeX and automatically serve it as a high-qua
 ## Quick Start (10 Minutes)
 
 ### 1. External Setup
+- **LaTeX Content**: We recommend starting with our [Overleaf Template](https://www.overleaf.com/read/qjvqdqcznjxj#d12f4f). Customize your resume there, then copy the content to your local `resume.tex`.
 - **HCP Terraform**: [Create an account](https://app.terraform.io/public/signup/account) and an **Organization**. Generate a [User API Token](https://app.terraform.io/app/settings/tokens).
 - **Cloudflare**: Get your **Account ID**, **Zone ID** for your domain, and an **API Token** (with 'Pages' and 'DNS' edit permissions).
 
