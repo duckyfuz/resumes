@@ -17,3 +17,9 @@ variable "project_name" {
   description = "The name of the Cloudflare Pages project"
   type        = string
 }
+
+variable "pr_number" {
+  description = "The number of the pull request for preview environments"
+  type        = string
+  default     = ""
+}
