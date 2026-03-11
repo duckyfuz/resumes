@@ -19,6 +19,11 @@ Maintain a professional resume in LaTeX and automatically serve it as a high-qua
 ### 2. Fork & Configure
 Fork this repo and add the following to **Settings -> Secrets and variables -> Actions**:
 
+> [!IMPORTANT]
+> **Security Warning:** Because this workflow uses `pull_request_target` to allow fork previews, it can execute code from a PR with access to your secrets. 
+> 
+> Go to **Settings -> Actions -> General** and under "Workflow run permissions", set **"Approval for running fork pull request workflows from contributors"** to **"Require approval for all external contributors"**.
+
 **Secrets:**
 - `CLOUDFLARE_API_TOKEN`
 - `CLOUDFLARE_ACCOUNT_ID`
