@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, reopened]
   workflow_dispatch:
 
@@ -15,6 +15,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
 
       - name: Compile LaTeX to PDF
         uses: xu-cheng/latex-action@v3
@@ -53,6 +56,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
@@ -60,7 +66,7 @@ jobs:
       - name: Set PR Number
         id: set_outputs
         run: |
-          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+          if [[ "${{ github.event_name }}" == "pull_request" || "${{ github.event_name }}" == "pull_request_target" ]]; then
             echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
             echo "project_name=${{ vars.PROJECT_NAME }}-pr-${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
             echo "WS_NAME=${{ vars.PROJECT_NAME }}-pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
@@ -109,6 +115,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
 
       - name: Download Resume Assets
         uses: actions/download-artifact@v4
@@ -134,7 +143,7 @@ jobs:
           branch: ${{ github.head_ref || github.ref_name }}
 
       - name: Comment on PR
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOMAIN: ${{ needs.manage_infrastructure.outputs.effective_domain_name }}
@@ -146,4 +155,4 @@ jobs:
           - 📄 **Direct PDF:** [https://${DOMAIN}/resume.pdf](https://${DOMAIN}/resume.pdf)
           - 📦 **JSON API:** [https://${DOMAIN}/resume.json](https://${DOMAIN}/resume.json)
           
-          _Built from commit ${{ github.sha }}_"
+          _Built from commit ${{ github.event.pull_request.head.sha || github.sha }}_"
